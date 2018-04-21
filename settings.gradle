@@ -1,1 +1,1 @@
-include ':app', ':baselib', ':videoplugin'
+include ':app', ':baselib', ':videoplugin', ':titeduplugin'

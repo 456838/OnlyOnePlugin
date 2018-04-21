@@ -1,11 +1,10 @@
 package com.salton123.onlyone.ui
 
 import android.os.Bundle
-import com.salton123.base.BaseSupportFragment
-import com.salton123.onlyone.R
 import com.brioal.bottomtab.entity.TabEntity
-import com.brioal.bottomtab.interfaces.OnTabSelectedListener
+import com.salton123.base.BaseSupportFragment
 import com.salton123.base.FragmentDelegate
+import com.salton123.onlyone.R
 import com.salton123.onlyone.ui.fm.FirstFragment
 import com.salton123.onlyone.ui.fm.SecondFragment
 import kotlinx.android.synthetic.main.fm_main.*
@@ -18,14 +17,13 @@ import me.yokeyword.fragmentation.SupportFragment
  * Description:
  * Updated:
  */
-@Deprecated
 class MainFragment : BaseSupportFragment() {
-    val mList: MutableList<TabEntity> = ArrayList()
+    private val mList: MutableList<TabEntity> = ArrayList()
     private val mFragments = arrayOfNulls<SupportFragment>(4)
-    private val ZERO = 0
-    private val FIRST = 1
-    private val SECOND = 2
-    private val THIRD = 3
+    private val zero = 0
+    private val first = 1
+    private val second = 2
+    private val third = 3
 
     override fun getLayout(): Int {
         return R.layout.fm_main
@@ -33,15 +31,15 @@ class MainFragment : BaseSupportFragment() {
 
     override fun initVariable(savedInstanceState: Bundle?) {
         if (savedInstanceState == null) {
-            mFragments[ZERO] = FragmentDelegate.newInstance(FirstFragment::class.java)
-            mFragments[FIRST] = FragmentDelegate.newInstance(SecondFragment::class.java)
-            mFragments[SECOND] = FragmentDelegate.newInstance(SecondFragment::class.java)
-            mFragments[THIRD] = FragmentDelegate.newInstance(SecondFragment::class.java)
+            mFragments[zero] = FragmentDelegate.newInstance(FirstFragment::class.java)
+            mFragments[first] = FragmentDelegate.newInstance(SecondFragment::class.java)
+            mFragments[second] = FragmentDelegate.newInstance(SecondFragment::class.java)
+            mFragments[third] = FragmentDelegate.newInstance(SecondFragment::class.java)
         } else {
-            mFragments[ZERO] = findChildFragment(FirstFragment::class.java)
-            mFragments[FIRST] = findChildFragment(SecondFragment::class.java)
-            mFragments[SECOND] = findChildFragment(SecondFragment::class.java)
-            mFragments[THIRD] = findChildFragment(SecondFragment::class.java)
+            mFragments[zero] = findChildFragment(FirstFragment::class.java)
+            mFragments[first] = findChildFragment(SecondFragment::class.java)
+            mFragments[second] = findChildFragment(SecondFragment::class.java)
+            mFragments[third] = findChildFragment(SecondFragment::class.java)
         }
         mList.add(TabEntity(R.drawable.book_icon, "推荐"))
         mList.add(TabEntity(R.drawable.movie_icon, "游戏"))
@@ -54,7 +52,7 @@ class MainFragment : BaseSupportFragment() {
     override fun initViewAndData() {
         bottoNavigationBar.setList(mList) //设置数据源
         bottoNavigationBar.setNews(0, 1)
-        loadMultipleRootFragment(R.id.fl_container, ZERO, mFragments[ZERO], mFragments[FIRST], mFragments[SECOND], mFragments[THIRD])
+        loadMultipleRootFragment(R.id.fl_container, zero, mFragments[zero], mFragments[first], mFragments[second], mFragments[third])
     }
 
     override fun initListener() {

@@ -27,6 +27,8 @@ dependencies {
     api project(":baselib"){
 //        exclude ""
     }
+    api "org.jsoup:jsoup:1.11.2"
+    implementation "com.squareup.retrofit2:converter-scalars:2.4.0"
     //  LiveData & ViewModel
     implementation "android.arch.lifecycle:extensions:+"
     //  LiveData with ReactiveStreams API

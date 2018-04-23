@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.qihoo360.replugin.RePlugin
 import com.salton123.onlyone.R
@@ -29,8 +30,8 @@ class SecondFragment : SupportFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (RePlugin.preload("videoplugin")) {
-            var videoLayout = RePlugin.fetchViewByLayoutName<LinearLayout>("videoplugin", "fm_video", null)
+        if (RePlugin.preload("titeduplugin")) {
+            var videoLayout = RePlugin.fetchViewByLayoutName<FrameLayout>("titeduplugin", "cp_tit_edu_main", null)
             (contentView as ViewGroup).addView(videoLayout)
         }
     }

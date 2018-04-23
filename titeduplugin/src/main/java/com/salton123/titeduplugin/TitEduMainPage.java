@@ -12,11 +12,20 @@ import android.widget.Toast;
 import com.andview.refreshview.XRefreshView;
 import com.andview.refreshview.XRefreshViewFooter;
 import com.andview.refreshview.XRefreshViewHeader;
+import com.salton123.titeduplugin.view.adapter.TitEduMainPageAdapter;
+import com.salton123.util.RxUtils;
 import com.salton123.util.ViewUtils;
 import com.yy.mobile.memoryrecycle.views.YYFrameLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import cn.edu.tit.module.api.TitNewsCategory;
+import cn.edu.tit.module.config.DataOpService;
+import cn.edu.tit.module.config.RetrofitHelper;
+import cn.edu.tit.module.model.bean.NewsTagInfo;
+import io.reactivex.functions.Consumer;
 
 /**
  * User: newSalton@outlook.com
@@ -26,7 +35,7 @@ import java.util.List;
  */
 public class TitEduMainPage extends YYFrameLayout {
     private RecyclerView recyclerView;
-    private VideoPageAdapter mAdapter;
+    private TitEduMainPageAdapter mAdapter;
     private XRefreshView xRefreshView;
 
     public TitEduMainPage(@NonNull Context context) {
@@ -70,14 +79,34 @@ public class TitEduMainPage extends YYFrameLayout {
         });
     }
 
-    List<String> data = new ArrayList<>();
+    List<NewsTagInfo> newsTagInfos = new ArrayList<>();
 
     private void initData() {
-        for (int i = 0; i < 10; i++) {
-            data.add("hello" + i);
-        }
-        mAdapter = new VideoPageAdapter(getContext(), data);
+        mAdapter = new TitEduMainPageAdapter(getContext());
         recyclerView.setAdapter(mAdapter);
+        HashMap<String, Object> map = new HashMap<>();
+        RetrofitHelper.INSTANCE.getTitNewsApi()
+                .getNewsCategory(TitNewsCategory.CATEGORY_IMPORTANCE_NEWS, 1, "NextPage")
+                .compose(RxUtils.<String>schedulersTransformer())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        List<NewsTagInfo> newsTagInfos = DataOpService.INSTANCE.parserNewsTagInfo(s);
+                        mAdapter.addAll(newsTagInfos);
+                    }
+                }, RxUtils.errorConsumer());
+        // RetrofitHelper.getTitNewsApi()
+        //         .getNewsCategory(TitNewsCategory.CATEGORY_IMPORTANCE_NEWS, 1, "NextPage")
+        //         .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        //         .subscribe {
+        //     it ?.let {
+        //         var datas = DataOpService.parserNewsTagInfo(it)
+        //         datas.forEachIndexed {
+        //             index, newTagInfo ->
+        //                     content.append(newTagInfo.toString() + "\n")
+        //         }
+        //     }
+        // }
         // mAdapter.addAll(data);
     }
 

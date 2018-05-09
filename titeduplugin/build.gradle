@@ -18,6 +18,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "titeduplugin.apk"
+        }
+    }
 }
 
 apply plugin: 'replugin-plugin-gradle'
@@ -35,4 +42,14 @@ dependencies {
     implementation "android.arch.lifecycle:reactivestreams:+"
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
+    implementation "com.android.support:design:${support_version}"
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+}
+
+//task to copy library to libs
+task copyXmly(type: Copy) {
+    from('build/outputs/apk/')
+    into('../app/src/main/assets/plugins/')
+    ///Rename the aar
+    rename('xmly-debug.apk', 'xmly-debug.jar')
 }

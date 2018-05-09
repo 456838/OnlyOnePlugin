@@ -51,9 +51,7 @@ object DataOpService {
     }
 
     fun NewsTagInfos(html: String): List<Map<String, Any>>? {
-        var datas: MutableList<Map<String, Any>>? = null
-        datas = ArrayList()
-        val tinyWebUrl = StringBuilder()
+        var datas: MutableList<Map<String, Any>>? = ArrayList()
         try {
             val doc = Jsoup.parse(html)
             val links = doc.getElementsByClass("winstyle981422905_42787")
@@ -78,7 +76,7 @@ object DataOpService {
                         "timestyle981422905_42787").text()
                 if (time != "") {
                     map["time"] = time
-                    datas.add(map)
+                    datas!!.add(map)
                 }
             }
             return datas

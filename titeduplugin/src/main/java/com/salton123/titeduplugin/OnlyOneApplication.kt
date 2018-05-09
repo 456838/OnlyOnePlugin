@@ -1,9 +1,7 @@
 package com.salton123.titeduplugin
 
-import android.app.Application
+import com.salton123.base.ApplicationBase
 import com.salton123.util.LogUtils
-import com.shuyu.gsygiideloader.GSYGlideImageLoader
-import com.shuyu.gsyimageloader.GSYImageLoaderManager
 import me.yokeyword.fragmentation.Fragmentation
 
 
@@ -13,7 +11,7 @@ import me.yokeyword.fragmentation.Fragmentation
  * ModifyTime: 下午4:46
  * Description:
  */
-class OnlyOneApplication : Application() {
+class OnlyOneApplication : ApplicationBase() {
 
 
     override fun onCreate() {
@@ -37,6 +35,5 @@ class OnlyOneApplication : Application() {
                     //                         Bugtags.sendException(e);
                 }
                 .install()
-        GSYImageLoaderManager.initialize(GSYGlideImageLoader(this))
     }
 }

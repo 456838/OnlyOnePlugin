@@ -1,14 +1,12 @@
 package com.salton123.onlyone
 
-import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import com.qihoo360.replugin.RePlugin
 import com.qihoo360.replugin.RePluginCallbacks
 import com.qihoo360.replugin.RePluginConfig
+import com.salton123.baselib.GlossyApplication
 import com.salton123.util.LogUtils
-import com.shuyu.gsygiideloader.GSYGlideImageLoader
-import com.shuyu.gsyimageloader.GSYImageLoaderManager
 import me.yokeyword.fragmentation.Fragmentation
 
 
@@ -18,8 +16,7 @@ import me.yokeyword.fragmentation.Fragmentation
  * ModifyTime: 下午4:46
  * Description:
  */
-class OnlyOneApplication : Application() {
-
+class OnlyOneApplication : GlossyApplication() {
 
 
     /**
@@ -69,7 +66,7 @@ class OnlyOneApplication : Application() {
         initDependences()
     }
 
-    private fun initDependences(){
+    private fun initDependences() {
         // 栈视图功能，大大降低Fragment的开发难度，建议在Application里初始化
         Fragmentation.builder()
                 // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
@@ -85,8 +82,8 @@ class OnlyOneApplication : Application() {
                     //                         Bugtags.sendException(e);
                 }
                 .install()
-        GSYImageLoaderManager.initialize(GSYGlideImageLoader(this))
     }
+
     override fun onLowMemory() {
         super.onLowMemory()
 

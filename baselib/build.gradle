@@ -1,5 +1,10 @@
 apply plugin: 'com.android.library'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions' //扩展插件
+
+apply plugin: 'kotlin-kapt'  //kapt3插件
 android {
     compileSdkVersion "${compile_sdk_version}" as Integer
     buildToolsVersion "${build_tools_version}"
@@ -31,4 +36,5 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
     api "com.salton123:saltonFramework:${saltonframework_version}"
+//    kapt "com.github.bumptech.glide:compiler:4.5.0"
 }

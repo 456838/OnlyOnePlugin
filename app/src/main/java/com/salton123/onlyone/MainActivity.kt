@@ -1,11 +1,8 @@
 package com.salton123.onlyone
 
 import android.os.Bundle
-import com.salton123.base.BaseSupportActivity
 import com.salton123.base.FragmentDelegate
 import com.salton123.onlyone.ui.MainFragment
-import com.salton123.onlyone.ui.fm.FirstFragment
-import com.salton123.onlyone.ui.fm.SecondFragment
 import me.yokeyword.fragmentation.SupportActivity
 
 class MainActivity : SupportActivity() {
@@ -14,6 +11,7 @@ class MainActivity : SupportActivity() {
         setContentView(R.layout.salton_fm_container)
         loadRootFragment(R.id.fl_container, FragmentDelegate.newInstance(MainFragment::class.java)!!)
     }
+
 //    override fun getLayout(): Int {
 //        return R.layout.salton_fm_container
 //    }

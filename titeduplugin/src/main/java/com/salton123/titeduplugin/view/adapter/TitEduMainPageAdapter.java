@@ -12,8 +12,6 @@ import com.salton123.base.BaseRecycerViewAdapter;
 import com.salton123.titeduplugin.R;
 import com.salton123.util.ViewUtils;
 import com.salton123.util.log.MLog;
-import com.shuyu.gsyimageloader.GSYImageLoader;
-import com.shuyu.gsyimageloader.GSYImageLoaderManager;
 
 import cn.edu.tit.module.model.bean.NewsTagInfo;
 
@@ -42,17 +40,25 @@ public class TitEduMainPageAdapter extends BaseRecycerViewAdapter<NewsTagInfo, R
 
 
     @Override
-    public void getBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void getBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof VideoItemHodler) {
             MLog.info(TAG, "[getBindViewHolder]");
             VideoItemHodler itemHodler = (VideoItemHodler) holder;
-            NewsTagInfo item = list.get(position);
+            NewsTagInfo item = getData().get(position);
             itemHodler.news_title.setText(item.getTitle() + "");
             itemHodler.news_short_content.setText(item.getTime() + "");
             itemHodler.item_textView3.setText((position + 1) + "");
             itemHodler.item_textView3.setTypeface(typeface);
             // GSYImageLoaderManager.Companion.getSInstance().loadImage();
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mClickListener != null) {
+                    mClickListener.onItemClick(position, holder.itemView, holder);
+                }
+            }
+        });
     }
 
     class VideoItemHodler extends RecyclerView.ViewHolder {

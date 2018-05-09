@@ -18,6 +18,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "titeduplugin.apk"
+        }
+    }
 }
 
 apply plugin: 'replugin-plugin-gradle'
@@ -33,4 +39,8 @@ dependencies {
     implementation "android.arch.lifecycle:reactivestreams:+"
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
+
+//    implementation 'com.android.support:appcompat-v7:24.2.0'
+//    implementation 'com.android.support:design:24.2.0'
+    implementation 'com.android.support:recyclerview-v7:24.2.0'
 }

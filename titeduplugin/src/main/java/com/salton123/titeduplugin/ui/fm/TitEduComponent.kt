@@ -1,6 +1,7 @@
 package com.salton123.titeduplugin.ui.fm
 
 import android.os.Bundle
+import cn.edu.tit.module.api.TitNewsCategory
 import com.salton123.base.BaseSupportFragment
 import com.salton123.titeduplugin.R
 
@@ -12,12 +13,16 @@ import com.salton123.titeduplugin.R
  */
 class TitEduComponent : BaseSupportFragment() {
     override fun getLayout(): Int {
-        return R.layout.cp_tit_edu_main
+        return R.layout.tit_edu_cp_main
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {
     }
 
     override fun initViewAndData() {
+    }
+
+    fun say(@TitNewsCategory type: Int) {
+
     }
 }

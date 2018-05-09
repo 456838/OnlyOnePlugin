@@ -9,7 +9,7 @@ import com.salton123.base.BaseSupportFragment
  * ModifyTime: 下午8:25
  * Description:
  */
-class VideoFragment :BaseSupportFragment() {
+class VideoFragment : BaseSupportFragment() {
     override fun getLayout(): Int {
         return R.layout.fm_video
     }

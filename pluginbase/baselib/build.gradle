@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions' //扩展插件
+
+apply plugin: 'kotlin-kapt'  //kapt3插件
+apply plugin: 'maven'
+android {
+    compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
+    buildToolsVersion "${rootProject.ext.android.buildToolsVersion}"
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.android.targetSdkVersion as Integer
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+        //语言资源,只支持中文,减少包大小
+
+//        resConfigs "en", "de", "fr", "it"
+        resConfigs "xxhdpi"
+        resConfigs "${rootProject.ext.dependVersion.appLanguage}" as String
+        renderscriptTargetApi 18
+        renderscriptSupportModeEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api "com.salton123:saltonFramework:${rootProject.ext.dependVersion.saltonframeworkVersion}"
+}
+
+//./gradlew clean uploadArchives
+group = 'com.salton123'
+version = '0.0.0.1'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../../repo')) //定义本地maven仓库的地址
+        }
+    }
+}

@@ -13,7 +13,7 @@
         android:name=".MusicPlayerApplication"
         android:theme="@style/MP.Theme">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.main.MainActivityTest"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

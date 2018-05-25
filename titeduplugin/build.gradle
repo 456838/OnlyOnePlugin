@@ -1,5 +1,5 @@
-//apply plugin: 'com.android.library'
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+//apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
@@ -20,11 +20,11 @@ android {
     }
 
     // 自定义输出配置
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "titeduplugin.apk"
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "titeduplugin.apk"
+//        }
+//    }
 }
 
 apply plugin: 'replugin-plugin-gradle'

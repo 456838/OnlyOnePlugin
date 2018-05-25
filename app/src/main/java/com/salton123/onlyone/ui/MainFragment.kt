@@ -60,14 +60,14 @@ class MainFragment : BaseSupportFragment() {
 
     override fun initListener() {
         bottoNavigationBar.setSelectedListener { position ->
-//            if (position == 3) {
-//                if (RePlugin.preload("musicplugin")) {
-//                    RePlugin.startActivity(context, Intent(), "musicplugin", "io.github.ryanhoo.music.ui.main.MainActivity")
-//                }
-//            } else {
-//
-//            }
-            showHideFragment(mFragments[position])
+            if (position == 3) {
+                if (RePlugin.preload("musicplugin")) {
+                    RePlugin.startActivity(context, Intent(), "musicplugin", "io.github.ryanhoo.music.ui.main.MainActivity")
+                }
+            } else {
+                showHideFragment(mFragments[position])
+            }
+
         }
 
     }

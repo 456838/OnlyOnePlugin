@@ -1,5 +1,5 @@
-//apply plugin: 'com.android.library'
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+//apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
@@ -19,11 +19,11 @@ android {
         }
     }
     // 自定义输出配置
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "titeduplugin.apk"
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "titeduplugin.apk"
+//        }
+//    }
 }
 
 apply plugin: 'replugin-plugin-gradle'
@@ -34,9 +34,9 @@ dependencies {
 //        exclude ""
     }
     //  LiveData & ViewModel
-    implementation "android.arch.lifecycle:extensions:+"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
     //  LiveData with ReactiveStreams API
-    implementation "android.arch.lifecycle:reactivestreams:+"
+    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
     implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
 

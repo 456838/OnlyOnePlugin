@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/musicplugin/musicplugin.iml" filepath="$PROJECT_DIR$/musicplugin/musicplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/titeduplugin/titeduplugin.iml" filepath="$PROJECT_DIR$/titeduplugin/titeduplugin.iml" />
       <module fileurl="file://$PROJECT_DIR$/videoplugin/videoplugin.iml" filepath="$PROJECT_DIR$/videoplugin/videoplugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xmly/xmly.iml" filepath="$PROJECT_DIR$/xmly/xmly.iml" />
     </modules>
   </component>
 </project>

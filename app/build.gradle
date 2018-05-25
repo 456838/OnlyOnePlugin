@@ -1,4 +1,5 @@
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
@@ -10,7 +11,7 @@ android {
     defaultConfig {
         minSdkVersion "${min_sdk_version}" as Integer
         targetSdkVersion "${target_sdk_version}" as Integer
-        applicationId "com.salton123.onlyone"
+//        applicationId "com.salton123.onlyone"
         versionCode 1
         versionName "1.0"
 

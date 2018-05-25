@@ -1,12 +1,13 @@
 import java.text.SimpleDateFormat
 
-apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 //apply plugin: 'android-apt'
 android {
     compileSdkVersion "${compile_sdk_version}" as Integer
     buildToolsVersion "${build_tools_version}"
     defaultConfig {
-        applicationId 'io.github.ryanhoo.music'
+//        applicationId 'io.github.ryanhoo.music'
         minSdkVersion "${min_sdk_version}" as Integer
         targetSdkVersion "${target_sdk_version}" as Integer
         versionCode getVersionCode(1)
@@ -20,11 +21,11 @@ android {
         }
     }
     // 自定义输出配置
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "musicplugin.apk"
-        }
-    }
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "musicplugin.apk"
+//        }
+//    }
 }
 
 apply plugin: 'replugin-plugin-gradle'

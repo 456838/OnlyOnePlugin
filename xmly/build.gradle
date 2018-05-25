@@ -1,0 +1,73 @@
+//apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion "${compile_sdk_version}" as Integer
+    buildToolsVersion "${build_tools_version}"
+    defaultConfig {
+        minSdkVersion "${min_sdk_version}" as Integer
+        targetSdkVersion "${target_sdk_version}" as Integer
+        versionCode 1
+        versionName "1.0"
+    }
+    resourcePrefix "xmly_"
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "xmlyplugin.apk"
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [res.getSrcDirs(), 'res-xmly']
+            assets.srcDirs = [assets.getSrcDirs(), 'src/main/assets']
+            println "dirs=" + res.getSrcDirs()
+        }
+    }
+}
+
+apply plugin: 'replugin-plugin-gradle'
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':baselib')
+    //    implementation "com.squareup.retrofit2:converter-scalars:2.4.0"
+    //    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
+    implementation "com.android.support:design:${support_version}"
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+}
+
+//task to copy library to libs
+task copyXmly(type: Copy) {
+    from('build/outputs/apk/')
+    into('../app/src/main/assets/plugins/')
+    ///Rename the aar
+    rename('xmly-debug.apk', 'xmly-debug.jar')
+}
+task dep(type: DependencyReportTask) {
+    print("start dep task")
+//    gradle.getTaskGraph().
+//    print getDependencies().toString()
+//    print dependencies
+//    task allDeps(type: DependencyReportTask) {}
+
+//    gradle.getTaskGraph().whenReady {
+//        project.tasks.all {
+//            if (it.getPath().equals(":credit:compileReleaseJavaWithJavac")) {
+//                println(it.getPath())
+//                printTaskDependency(it,"")
+//            }
+//        }
+//    }
+}
+
+//        ./gradlew :app:dependencies --configuration compile

@@ -29,10 +29,10 @@ class FourFragment : SupportFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (RePlugin.preload("musicplugin")) {
-            var videoLayout = RePlugin.fetchViewByLayoutName<FrameLayout>("musicplugin", "plugin_music_main", null)
-            (contentView as ViewGroup).addView(videoLayout)
-        }
+//        if (RePlugin.preload("musicplugin")) {
+//            var videoLayout = RePlugin.fetchViewByLayoutName<FrameLayout>("musicplugin", "plugin_music_main", null)
+//            (contentView as ViewGroup).addView(videoLayout)
+//        }
     }
 
 }

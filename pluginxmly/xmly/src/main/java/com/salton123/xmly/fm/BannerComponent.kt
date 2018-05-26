@@ -5,10 +5,10 @@ import android.widget.ImageView
 import cn.bingoogolapple.bgabanner.BGABanner
 import com.salton123.GlideApp
 import com.salton123.mvp.ui.BaseSupportPresenterFragment
-import com.salton123.util.log.MLog
+import com.salton123.util.MLog
 import com.salton123.xmly.R
 import com.salton123.xmly.business.RequestContract
-import com.salton123.xmly.business.IRequestPresenter
+import com.salton123.xmly.business.RequestPresenter
 import com.ximalaya.ting.android.opensdk.httputil.XimalayaException
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2List
@@ -21,12 +21,14 @@ import kotlinx.android.synthetic.main.xmly_cp_banner.*
  * Description:
  */
 class BannerComponent : BaseSupportPresenterFragment<RequestContract.IRequestPresenter>(), RequestContract.IRequestView {
+
+
     override fun getLayout(): Int {
         return R.layout.xmly_cp_banner
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {
-        mPresenter = IRequestPresenter()
+        mPresenter = RequestPresenter()
     }
 
     override fun initViewAndData() {
@@ -52,14 +54,15 @@ class BannerComponent : BaseSupportPresenterFragment<RequestContract.IRequestPre
 
     private val TAG: String = "BannerComponent"
 
-    override fun onError(code: Int, msg: String?) {
+    override fun onError(code: Int, msg: String) {
         MLog.info(TAG, "code=${code},msg=${msg}")
         shortToast("code=${code},msg=${XimalayaException.getExceptionByCode(code)}")
     }
 
-    override fun <T : Any?> onSucceed(data: T) {
+    override fun <T> onSucceed(data: T?) {
         if (data is BannerV2List) {
-            banner.setData(data.bannerV2s, null)
+            banner?.let { it.setData(data.bannerV2s, null) }
         }
     }
+
 }

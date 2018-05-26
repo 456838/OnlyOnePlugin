@@ -36,6 +36,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'uk.co.chrisjenx:calligraphy:2.2.0'
     api "com.salton123:saltonFramework:${rootProject.ext.dependVersion.saltonframeworkVersion}"
 }
 

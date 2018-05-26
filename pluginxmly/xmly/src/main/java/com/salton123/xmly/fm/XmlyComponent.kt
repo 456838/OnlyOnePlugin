@@ -24,7 +24,7 @@ class XmlyComponent : BaseSupportFragment() {
 
     override fun initViewAndData() {
         loadRootFragment(R.id.flBanner, FragmentDelegate.newInstance(BannerComponent::class.java))
-        loadRootFragment(R.id.flRecommend, FragmentDelegate.newInstance(RecomemdComponent::class.java))
+        loadRootFragment(R.id.flRecommend, FragmentDelegate.newInstance(RecommendComponent::class.java))
     }
 
 }

@@ -20,6 +20,8 @@ class MainComponent : BaseSupportFragment() {
     }
 
     override fun initViewAndData() {
-        loadMultipleRootFragment(R.id.fl_container, 0, FragmentDelegate.newInstance(XmlyComponent::class.java))
+        if (findChildFragment(XmlyComponent::class.java) == null) {
+            loadMultipleRootFragment(R.id.fl_container, 0, FragmentDelegate.newInstance(XmlyComponent::class.java))
+        }
     }
 }

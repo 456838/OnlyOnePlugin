@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/xmly_view_grid_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="16.0dip"
+        android:layout_marginRight="16.0dip"
+        android:orientation="horizontal">
+
+        <include
+            android:id="@+id/sect_1"
+            layout="@layout/xmly_item_recommend_grid"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10.0dip"
+            android:layout_weight="1.0" />
+
+        <include
+            android:id="@+id/sect_2"
+            layout="@layout/xmly_item_recommend_grid"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0" />
+
+        <include
+            android:id="@+id/sect_3"
+            layout="@layout/xmly_item_recommend_grid"
+            android:layout_width="0.0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10.0dip"
+            android:layout_weight="1.0" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/border_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="6.0dip"
+        android:background="#ffffffff" />
+</LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffffff">
+
+    <View
+        android:id="@+id/bar"
+        android:layout_width="2.0dip"
+        android:layout_height="16.0dip"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="13.0dip"
+        android:layout_marginTop="13.0dip"
+        android:background="#fff77724" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="16.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginTop="14.0dip"
+        android:layout_toRightOf="@+id/bar"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:text="猜你喜欢"
+        android:textColor="#ff7f7f7f"
+        android:textSize="14.0sp" />
+
+    <TextView
+        android:id="@+id/tv_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="12.0dip"
+        android:layout_marginTop="10.0dip"
+        android:clickable="true"
+        android:gravity="right"
+        android:paddingBottom="4.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingTop="4.0dip"
+        android:text="更多"
+        android:textColor="@drawable/xmly_text_more_selector"
+        android:textSize="12.0sp" />
+</RelativeLayout>

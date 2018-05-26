@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<com.classic.common.MultipleStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/multipleStatusView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    app:emptyView="@layout/xmly_layout_empty_view"
+    app:errorView="@layout/xmly_layout_error_view"
+    app:loadingView="@layout/xmly_layout_loading_view"
+    app:noNetworkView="@layout/xmly_layout_network_view">
 
-</LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="51dp">
+
+    </android.support.v7.widget.RecyclerView>
+</com.classic.common.MultipleStatusView>

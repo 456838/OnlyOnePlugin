@@ -3,14 +3,12 @@ package com.salton123.xmly
 import android.app.PendingIntent
 import android.content.Intent
 import com.salton123.baselib.GlossyApplication
-import com.salton123.util.FileUtils
-import com.salton123.util.log.MLog
+import com.salton123.util.MLog
 import com.ximalaya.ting.android.opensdk.datatrasfer.CommonRequest
 import com.ximalaya.ting.android.opensdk.player.appnotification.XmNotificationCreater
 import com.ximalaya.ting.android.opensdk.util.BaseUtil
 import com.ximalaya.ting.android.sdkdownloader.XmDownloadManager
-import io.reactivex.Observable
-import java.util.concurrent.TimeUnit
+import me.yokeyword.fragmentation.Fragmentation
 
 
 /**
@@ -26,6 +24,8 @@ class XmlyApp : GlossyApplication() {
         MLog.info("aa", "" + System.currentTimeMillis())
 //        Observable.timer(3000, TimeUnit.MILLISECONDS).subscribe {  }
         initXmly()
+        cusFont()
+        Fragmentation.FragmentationBuilder().debug(true).stackViewMode(Fragmentation.BUBBLE).install()
     }
 
     fun initXmly() {

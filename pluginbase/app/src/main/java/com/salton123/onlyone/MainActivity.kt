@@ -9,7 +9,7 @@ class MainActivity : SupportActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.salton_fm_container)
-        loadRootFragment(R.id.fl_container, FragmentDelegate.newInstance(MainFragment::class.java)!!)
+        loadRootFragment(R.id.fl_container, FragmentDelegate.newInstance(MainFragment::class.java))
     }
 
 //    override fun getLayout(): Int {

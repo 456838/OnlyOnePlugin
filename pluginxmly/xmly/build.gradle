@@ -28,7 +28,7 @@ android {
 
     sourceSets {
         main {
-            res.srcDirs = [res.getSrcDirs(), 'res-xmly']
+            res.srcDirs = [res.getSrcDirs(), 'res', 'res-xmly']
             assets.srcDirs = [assets.getSrcDirs(), 'src/main/assets']
             println "dirs=" + res.getSrcDirs()
         }
@@ -45,6 +45,7 @@ dependencies {
     implementation "com.salton123:baselib:0.0.0.1"
     implementation "com.android.support:design:${rootProject.ext.dependVersion.androidSupportSdkVersion}"
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    implementation 'me.weyye.hipermission:library:1.0.7'
 }
 
 //task to copy library to libs

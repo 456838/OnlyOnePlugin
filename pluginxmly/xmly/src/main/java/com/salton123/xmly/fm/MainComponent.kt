@@ -1,9 +1,14 @@
 package com.salton123.xmly.fm
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import com.salton123.base.BaseSupportFragment
 import com.salton123.base.FragmentDelegate
+import com.salton123.event.StartBrotherEvent
+import com.salton123.util.EventUtil
 import com.salton123.xmly.R
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 /**
  * User: newSalton@outlook.com
@@ -17,6 +22,7 @@ class MainComponent : BaseSupportFragment() {
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {
+        EventUtil.register(this)
     }
 
     override fun initViewAndData() {
@@ -24,4 +30,17 @@ class MainComponent : BaseSupportFragment() {
             loadMultipleRootFragment(R.id.fl_container, 0, FragmentDelegate.newInstance(XmlyComponent::class.java))
         }
     }
+
+    @SuppressLint("MissingSuperCall")
+    override fun onDestroy() {
+        super.onDestroy()
+        EventUtil.unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onBrotherEvent(args: StartBrotherEvent) {
+        start(args.targetFragment)
+    }
+
+
 }

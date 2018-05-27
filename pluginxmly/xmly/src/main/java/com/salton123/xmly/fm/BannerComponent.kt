@@ -12,7 +12,7 @@ import com.salton123.xmly.business.RequestPresenter
 import com.ximalaya.ting.android.opensdk.httputil.XimalayaException
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2List
-import kotlinx.android.synthetic.main.xmly_cp_banner.*
+import kotlinx.android.synthetic.main.xmly_item_play_type_banner.*
 
 /**
  * User: newSalton@outlook.com
@@ -20,11 +20,12 @@ import kotlinx.android.synthetic.main.xmly_cp_banner.*
  * ModifyTime: 下午3:27
  * Description:
  */
+@Deprecated("unuse")
 class BannerComponent : BaseSupportPresenterFragment<RequestContract.IRequestPresenter>(), RequestContract.IRequestView {
 
 
     override fun getLayout(): Int {
-        return R.layout.xmly_cp_banner
+        return R.layout.xmly_item_play_type_banner
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {

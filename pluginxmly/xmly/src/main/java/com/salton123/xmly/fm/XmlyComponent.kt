@@ -13,6 +13,12 @@ import com.salton123.xmly.R
  * Description:
  */
 class XmlyComponent : BaseSupportFragment() {
+    override fun initViewAndData() {
+        if (findFragment(RecommendComponent::class.java) == null) {
+            loadRootFragment(R.id.fl_main_content, FragmentDelegate.newInstance(RecommendComponent::class.java))
+
+        }
+    }
 
     override fun getLayout(): Int {
         return R.layout.xmly_cp_main
@@ -22,9 +28,5 @@ class XmlyComponent : BaseSupportFragment() {
 
     }
 
-    override fun initViewAndData() {
-        loadRootFragment(R.id.flBanner, FragmentDelegate.newInstance(BannerComponent::class.java))
-        loadRootFragment(R.id.flRecommend, FragmentDelegate.newInstance(RecommendComponent::class.java))
-    }
 
 }

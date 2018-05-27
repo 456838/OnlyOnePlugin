@@ -39,7 +39,6 @@ class XmlyPluginAty : BaseSupportActivity() {
      */
     private fun checkPermission() {
         val permissionItems = mutableListOf<PermissionItem>()
-        // permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE, "手机状态", R.drawable.permission_ic_phone));
         permissionItems.add(PermissionItem(Manifest.permission.READ_EXTERNAL_STORAGE, "读取存储空间", R.drawable.permission_ic_storage))
         permissionItems.add(PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写入存储空间", R.drawable.permission_ic_storage))
         HiPermission.create(this)

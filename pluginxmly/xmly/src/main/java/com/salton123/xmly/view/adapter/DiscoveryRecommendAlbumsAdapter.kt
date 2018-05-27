@@ -1,32 +1,41 @@
 package com.salton123.xmly.view.adapter
 
-import android.app.Activity
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.ImageView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
+import com.salton123.GlideApp
 import com.salton123.base.recyclerview.adapter.CommonAdapter
 import com.salton123.xmly.R
-import com.ximalaya.ting.android.opensdk.model.album.DiscoveryRecommendAlbums
+import com.ximalaya.ting.android.opensdk.model.album.Album
 
 /**
  * User: newSalton@outlook.com
- * Date: 2018/5/26 下午6:26
- * ModifyTime: 下午6:26
+ * Date: 2018/5/26 上午11:52
+ * ModifyTime: 上午11:52
  * Description:
  */
-class DiscoveryRecommendAlbumsAdapter(context: Context, layoutId: Int) : CommonAdapter<DiscoveryRecommendAlbums>(context, layoutId) {
+class DiscoveryRecommendAlbumsAdapter(context: Context, layoutId: Int) : CommonAdapter<Album>(context, layoutId) {
 
-    override fun bindData(holder: ViewHolder, data: DiscoveryRecommendAlbums, position: Int) {
-        holder.setText(R.id.tv_title, data.displayCategoryName)
-        holder.getView<RecyclerView>(R.id.fl_recyclerView).let {
-            it.layoutManager = LinearLayoutManager(context as Activity, LinearLayoutManager.HORIZONTAL, false)
-            it.adapter = GuessLikeTypeHorizontalAdapter(context, data.albumList, R.layout.xmly_item_follow_horizontal)
-        }
-        holder.getView<TextView>(R.id.tv_more).let {
-            it.setOnClickListener { Toast.makeText(context, "更多", Toast.LENGTH_LONG).show() }
-        }
+    constructor(context: Context, list: MutableList<Album>, layoutId: Int) : this(context, layoutId) {
+        getData().addAll(list)
+    }
+
+    override fun bindData(holder: ViewHolder, data: Album, position: Int) {
+        holder.setImagePath(R.id.iv_cover_feed, object : ViewHolder.HolderImageLoader(data.coverUrlLarge) {
+            override fun loadImage(iv: ImageView, path: String) {
+                // 加载封页图
+                GlideApp.with(context)
+                        .load(path)
+                        .placeholder(R.drawable.placeholder_banner)
+                        .transition(DrawableTransitionOptions().crossFade())
+                        .into(holder.getView(R.id.iv_cover_feed))
+            }
+        })
+
+        //横向 RecyclerView 封页图下面标题
+        holder.setText(R.id.tv_title, data.albumTitle)
+        holder.setText(R.id.tv_tag, data.albumIntro)
     }
 }
+

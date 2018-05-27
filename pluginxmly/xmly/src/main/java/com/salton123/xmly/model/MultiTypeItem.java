@@ -1,4 +1,4 @@
-package com.salton123.xmly.model.type;
+package com.salton123.xmly.model;
 
 import android.support.annotation.NonNull;
 
@@ -10,17 +10,14 @@ import android.support.annotation.NonNull;
  * Description:
  */
 public class MultiTypeItem implements Comparable<MultiTypeItem> {
-    public static final int TYPE_GUESSLIKE = 0;     //猜你喜欢
-    public static final int TYPE_MUSIC = 1;     //音乐
-    public static final int TYPE_XIANGSHENG = 2;     //相声
-    public static final int TYPE_TALK_SHOW = 3;     //脱口秀
-    public static final int TYPE_TELE = 4;     //电台
-    public static final int TYPE_COM = 5;     //商业财经
-    public static final int TYPE_GONGKAIKE = 6;     //名校公开课
-    private int viewType;
-    private BasePlayType item;
+    public static final int TYPE_BANNER = 0; //banner推荐
+    public static final int TYPE_GUESS_LIKE = 1;     //猜你喜欢
+    public static final int TYPE_RECOMMEND_ALBUMS = 2;     //推荐相册
 
-    public MultiTypeItem(int viewType, BasePlayType item) {
+    private int viewType;
+    private Object item;
+
+    public MultiTypeItem(int viewType, Object item) {
         this.viewType = viewType;
         this.item = item;
     }
@@ -33,11 +30,11 @@ public class MultiTypeItem implements Comparable<MultiTypeItem> {
         this.viewType = viewType;
     }
 
-    public BasePlayType getItem() {
+    public Object getItem() {
         return item;
     }
 
-    public void setItem(BasePlayType item) {
+    public void setItem(Object item) {
         this.item = item;
     }
 

@@ -13,13 +13,13 @@ import com.ximalaya.ting.android.opensdk.model.album.UpdateBatchList
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2List
 import com.ximalaya.ting.android.opensdk.model.category.CategoryList
 import com.ximalaya.ting.android.opensdk.model.coldboot.GenreList
+import com.ximalaya.ting.android.opensdk.model.metadata.MetaDataList
 import com.ximalaya.ting.android.opensdk.model.tag.TagList
 import com.ximalaya.ting.android.opensdk.model.track.BatchTrackList
 import com.ximalaya.ting.android.opensdk.model.track.LastPlayTrackList
 import com.ximalaya.ting.android.opensdk.model.track.TrackHotList
 import com.ximalaya.ting.android.opensdk.model.track.TrackList
-
-import java.util.HashMap
+import java.util.*
 
 /**
  * User: newSalton@outlook.com
@@ -28,6 +28,18 @@ import java.util.HashMap
  * Description:
  */
 class RequestPresenter : RxPresenter<RequestContract.IRequestView>(), RequestContract.IRequestPresenter {
+    override fun getMetadataList(categoryId: String) {
+        val map = HashMap<String, String>()
+        CommonRequest.getMetadataList(map, object : IDataCallBack<MetaDataList> {
+            override fun onSuccess(categoryList: MetaDataList?) {
+                mView.onSucceed(categoryList)
+            }
+
+            override fun onError(i: Int, s: String) {
+                mView.onError(i, s)
+            }
+        })
+    }
 
     override fun getCategories() {
         val map = HashMap<String, String>()

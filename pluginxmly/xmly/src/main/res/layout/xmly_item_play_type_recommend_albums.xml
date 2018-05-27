@@ -38,7 +38,7 @@
             android:paddingEnd="5dp"
             android:paddingStart="5dp"
             android:paddingTop="3dp"
-            android:text="换一批"
+            android:text="更多"
             android:textColor="#000000"
             android:textSize="12sp" />
 

@@ -34,7 +34,12 @@ interface RequestContract {
 
         fun getDiscoveryRecommendAlbums(count: String)  //获取运营人员在发现页配置的分类维度专辑推荐模块的列表
 
-        fun getCategoryBannersV2(categoryId: String)
+        fun getCategoryBannersV2(categoryId: String)    //获取v2版本的分类推荐的焦点图列表
+
+//        @Deprecated("已过时")
+//        fun getAlbums(categoryId: String, tagName: String, page: String)//根据分类和标签获取某个分类某个标签下的热门专辑列表
+
+        fun getMetadataList(categoryId: String)//获取某个分类下的元数据列表
 
         fun getGuessLikeAlbum(count: String)
 

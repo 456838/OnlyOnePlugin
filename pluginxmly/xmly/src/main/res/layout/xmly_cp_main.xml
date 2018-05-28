@@ -1,11 +1,9 @@
 <com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/sliding_layout"
+    android:id="@+id/slideUpdatePannel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
-    android:fitsSystemWindows="false"
     android:gravity="bottom"
     sothree:umanoDragView="@+id/dragView"
     sothree:umanoOverlay="true"
@@ -32,12 +30,12 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/music_player_container"
+            android:id="@+id/musicPlayerContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <FrameLayout
-            android:id="@+id/mini_player_container"
+            android:id="@+id/miniPlayerContainer"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:background="#ffffff" />

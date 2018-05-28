@@ -18,21 +18,21 @@ import kotlinx.android.synthetic.main.xmly_cp_main.*
  */
 class XmlyComponent : BaseSupportFragment() {
 
-    private val mRecommendComponent by lazy { FragmentDelegate.newInstance(RecommendComponent::class.java) }
+
+    private val mXmlyTabPagerComponent by lazy { FragmentDelegate.newInstance(XmlyTabPagerComponent::class.java) }
     private val mMiniPlayerComponent by lazy { FragmentDelegate.newInstance(MiniPlayerComponent::class.java) }
     private val mMusicPlayerComponent by lazy { FragmentDelegate.newInstance(MusicPlayerComponent::class.java) }
 
     override fun initViewAndData() {
-        if (findFragment(RecommendComponent::class.java) == null) {
-            loadRootFragment(R.id.fl_main_content, mRecommendComponent)
+        if (findFragment(XmlyTabPagerComponent::class.java) == null) {
+            loadRootFragment(R.id.fl_main_content, mXmlyTabPagerComponent)
             loadRootFragment(R.id.miniPlayerContainer, mMiniPlayerComponent)
             loadRootFragment(R.id.musicPlayerContainer, mMusicPlayerComponent)
         }
     }
 
-    override fun getLayout(): Int {
-        return R.layout.xmly_cp_main
-    }
+    override fun getLayout(): Int = R.layout.xmly_cp_main
+
 
     override fun initVariable(savedInstanceState: Bundle?) {
 
@@ -77,7 +77,8 @@ class XmlyComponent : BaseSupportFragment() {
             true
         } else {
             val builder = android.support.v7.app.AlertDialog.Builder(_mActivity)
-            builder.setTitle("Hi").setMessage(Html.fromHtml("要退出App吗？")).setPositiveButton("嗯") { dialog, which ->
+            @Suppress("DEPRECATION")
+            builder.setTitle("Hi").setMessage(Html.fromHtml("要退出App吗？")).setPositiveButton("嗯") { _, _ ->
                 _mActivity.finish()
                 System.exit(0)
             }.setNegativeButton("再看看", null)

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.salton123.mvp.ui.BaseSupportPresenterFragment
 import com.salton123.util.MLog
+import com.salton123.util.NetUtil
 import com.salton123.xmly.R
 import com.salton123.xmly.business.RequestContract
 import com.salton123.xmly.business.RequestPresenter
@@ -32,12 +33,19 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
     }
 
     override fun initViewAndData() {
+        if (!NetUtil.isNetworkAvailable(context)) {
+            multipleStatusView.showNoNetwork()
+        }
         mRecyclerView.layoutManager = LinearLayoutManager(activity)
         mRecyclerView.adapter = mXmlyAdapter
+        getData()
+        multipleStatusView.setOnClickListener { getData() }
+    }
+
+    private fun getData() {
         mPresenter.getDiscoveryRecommendAlbums("10")
         mPresenter.getCategoryBannersV2("0")
         mPresenter.getGuessLikeAlbum("10")
-
     }
 
     val TAG = "RecommendComponent"
@@ -47,6 +55,9 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
     }
 
     override fun <T> onSucceed(data: T?) {
+        if (multipleStatusView.viewStatus != 0) {
+            multipleStatusView.showContent()
+        }
         when (data) {
             is DiscoveryRecommendAlbumsList -> data.discoveryRecommendAlbumses.forEach { mXmlyAdapter.add(MultiTypeItem(MultiTypeItem.TYPE_RECOMMEND_ALBUMS, it)) }
             is BannerV2List -> mXmlyAdapter.add(MultiTypeItem(MultiTypeItem.TYPE_BANNER, data))

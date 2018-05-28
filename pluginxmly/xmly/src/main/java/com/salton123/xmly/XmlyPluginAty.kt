@@ -4,13 +4,13 @@ import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.gyf.barlibrary.ImmersionBar
 import com.salton123.base.BaseSupportActivity
 import com.salton123.base.FragmentDelegate
 import com.salton123.xmly.fm.MainComponent
 import me.weyye.hipermission.HiPermission
 import me.weyye.hipermission.PermissionCallback
 import me.weyye.hipermission.PermissionItem
-import java.util.ArrayList
 
 /**
  * User: newSalton@outlook.com
@@ -24,8 +24,13 @@ class XmlyPluginAty : BaseSupportActivity() {
     }
 
     internal var isSetup = false
-    override fun initVariable(savedInstanceState: Bundle?) {
 
+    lateinit var mImmersionBar: ImmersionBar
+    override fun initVariable(savedInstanceState: Bundle?) {
+        mImmersionBar = ImmersionBar.with(this)
+                .statusBarDarkFont(true)
+                .transparentBar().transparentNavigationBar()
+        mImmersionBar.init()
     }
 
     override fun initViewAndData() {
@@ -78,5 +83,10 @@ class XmlyPluginAty : BaseSupportActivity() {
         if (findFragment(MainComponent::class.java) == null) {
             loadRootFragment(R.id.fl_container, FragmentDelegate.newInstance(MainComponent::class.java))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mImmersionBar.destroy()
     }
 }

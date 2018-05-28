@@ -16,7 +16,7 @@ ext {
             rxAndroid               : "2.0.1",
             saltonframeworkVersion  : "0.1.0.1",
             ijkplayerVersion        : "0.8.8",
-            appLanguage             : "en",//# 说明：如果是相同资源放在res目录，如果是中文资源和英文资源，要分别存放在res_zh/res_en，并且不能存放同名资源在res
+            appLanguage             : "zh",//# 说明：如果是相同资源放在res目录，如果是中文资源和英文资源，要分别存放在res_zh/res_en，并且不能存放同名资源在res
             appDevelop              : true,//# 是否开发模式
             packageType             : 2,//# 1 不打包raw 2打包raw ，用于开发过程中不打包raw下的视频资源，加快打包速度
     ]

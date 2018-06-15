@@ -45,6 +45,7 @@ interface RequestContract {
 
         fun getColdbootGenres()
 
+
     }
 
     interface IRequestView : BaseView {

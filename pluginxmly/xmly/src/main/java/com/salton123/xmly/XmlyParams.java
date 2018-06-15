@@ -22,4 +22,18 @@ public abstract class XmlyParams extends GlobalParams {
     public static final String CLOSE_ACTION = "com.app.test.android.Action_Close";
 
     public static final String PAUSE_START_ACTION = "com.app.test.android.Action_PAUSE_START";
+
+    // 首页
+    public static final int TYPE_BANNER = 0; //banner推荐
+    public static final int TYPE_GUESS_LIKE = 1;     //猜你喜欢
+    public static final int TYPE_RECOMMEND_ALBUMS = 2;     //推荐相册
+
+    //相册页
+    public static final int TYPE_HEADER = 0; //头部
+    public static final int TYPE_CONTENT = 1;     //内容
+    public static final int TYPE_FOOTER = 2;     //底部
+
+    public static final String FLAG_PLAY_LIST = "flag_play_list";
+    public static final String FLAG_PLAY_INDEX = "flag_play_index";
+
 }

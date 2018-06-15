@@ -25,19 +25,22 @@
         android:id="@+id/dragView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         android:clickable="true"
         android:focusable="false"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <FrameLayout
             android:id="@+id/musicPlayerContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
 
         <FrameLayout
             android:id="@+id/miniPlayerContainer"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:background="#ffffff" />
+            />
     </FrameLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

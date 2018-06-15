@@ -36,5 +36,5 @@
 
     <!-- CharacterView -->
     <dimen name="mp.characterView.padding">6dp</dimen>
-
+    <dimen name="xmly_mini_player_height">60.0dip</dimen>
 </resources>

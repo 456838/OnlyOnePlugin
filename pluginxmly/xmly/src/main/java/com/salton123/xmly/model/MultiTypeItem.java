@@ -10,9 +10,6 @@ import android.support.annotation.NonNull;
  * Description:
  */
 public class MultiTypeItem implements Comparable<MultiTypeItem> {
-    public static final int TYPE_BANNER = 0; //banner推荐
-    public static final int TYPE_GUESS_LIKE = 1;     //猜你喜欢
-    public static final int TYPE_RECOMMEND_ALBUMS = 2;     //推荐相册
 
     private int viewType;
     private Object item;

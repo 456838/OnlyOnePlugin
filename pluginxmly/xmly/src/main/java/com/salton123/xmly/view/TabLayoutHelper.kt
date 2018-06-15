@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Build
 import android.support.design.widget.TabLayout
 import android.widget.LinearLayout
-import com.salton123.util.DisplayUtils
+import com.salton123.util.ScreenUtils
 import java.lang.reflect.Field
 
 /**
@@ -34,8 +34,8 @@ object TabLayoutHelper {
                 child.setPadding(0, 0, 0, 0)
                 val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.marginStart = DisplayUtils.dip2px(tabLayout.context, 50f)
-                    params.marginEnd = DisplayUtils.dip2px(tabLayout.context, 50f)
+                    params.marginStart = ScreenUtils.dip2px(tabLayout.context, 50f)
+                    params.marginEnd = ScreenUtils.dip2px(tabLayout.context, 50f)
                 }
                 child.layoutParams = params
                 child.invalidate()

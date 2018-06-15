@@ -1,6 +1,7 @@
 package com.salton123.baselib
 
 import com.salton123.base.ApplicationBase
+import com.salton123.util.MLog
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
@@ -16,9 +17,13 @@ abstract class GlossyApplication : ApplicationBase() {
         // Custom fonts
         CalligraphyConfig.initDefault(
                 CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/Roboto-Monospace-Regular.ttf")
+                        .setDefaultFontPath("fonts/Roboto-Thin.ttf")
                         .setFontAttrId(R.attr.fontPath)
                         .build()
         )
+    }
+
+    fun initLog() {
+        MLog.init()
     }
 }

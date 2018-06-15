@@ -1,18 +1,13 @@
 package com.salton123.xmly.fm
 
-import android.os.Bundle
-import com.salton123.base.BaseSupportFragment
 import com.salton123.xmly.R
+import kotlinx.android.synthetic.main.xmly_cp_music_player.*
 
-class MusicPlayerComponent :BaseSupportFragment(){
-    override fun getLayout(): Int {
-        return R.layout.xmly_cp_music_player
-    }
+class MusicPlayerComponent : BasicPlayerComponent() {
 
-    override fun initVariable(savedInstanceState: Bundle?) {
-    }
-
+    override fun getLayout(): Int = R.layout.xmly_cp_music_player
     override fun initViewAndData() {
+        super.initViewAndData()
+        ivCover.startRotateAnimation()
     }
-
 }

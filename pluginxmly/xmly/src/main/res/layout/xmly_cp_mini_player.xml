@@ -4,7 +4,7 @@
     xmlns:makeramen="http://schemas.android.com/apk/res-auto"
     android:id="@+id/play_bar_root"
     android:layout_width="fill_parent"
-    android:layout_height="60.0dip"
+    android:layout_height="@dimen/xmly_mini_player_height"
     android:background="#ffffff">
 
     <View
@@ -24,7 +24,7 @@
         android:layout_toLeftOf="@+id/rela_play_b">
 
         <com.salton123.widget.CircleImageView
-            android:id="@+id/cover"
+            android:id="@+id/ivCover"
             android:layout_width="52.0dip"
             android:layout_height="52.0dip"
             android:layout_alignParentLeft="true"
@@ -42,26 +42,29 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="13.0dip"
-            android:layout_toRightOf="@+id/cover"
+            android:layout_toRightOf="@+id/ivCover"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/title_tv"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="#fff77724"
-                android:textSize="14.0sp" />
+                android:textSize="14.0sp"
+                app:text="@string/app_name" />
 
             <TextView
-                android:id="@+id/desc_tv"
+                android:id="@+id/tvDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:singleLine="true"
+                android:text="以上内容由喜马拉雅提供"
                 android:textColor="#ffb0b0b0"
-                android:textSize="12.0sp" />
+                android:textSize="12.0sp"
+                />
         </LinearLayout>
     </RelativeLayout>
 
@@ -73,25 +76,19 @@
         android:layout_marginRight="21.0dip"
         android:layout_toLeftOf="@+id/btn_next">
 
-        <ImageButton
-            android:id="@+id/play_pause_b"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivPlayPauseButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/xmly_player_toolbar_play_bg" />
-
-        <ImageView
-            android:id="@+id/play_btn_bg_b"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/toolbar_loading_normal"
-            android:visibility="visible" />
+            android:src="@drawable/xmly_ic_play"
+            app:srcCompat="@drawable/xmly_ic_play"
+            />
 
         <ImageView
             android:id="@+id/loading_b"

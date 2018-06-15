@@ -9,9 +9,9 @@
         android:id="@+id/mTabLayout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#CCFFFFFF"
+        android:background="#00ffffff"
         app:tabIndicatorColor="#000"
-        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorHeight="0dp"
         app:tabMinWidth="100dp"
         app:tabSelectedTextColor="#000"
         app:tabTextColor="#5000" />

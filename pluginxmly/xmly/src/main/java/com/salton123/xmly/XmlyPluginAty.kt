@@ -7,10 +7,12 @@ import android.widget.Toast
 import com.gyf.barlibrary.ImmersionBar
 import com.salton123.base.BaseSupportActivity
 import com.salton123.base.FragmentDelegate
+import com.salton123.xmly.business.XmlyInitializer
 import com.salton123.xmly.fm.MainComponent
 import me.weyye.hipermission.HiPermission
 import me.weyye.hipermission.PermissionCallback
 import me.weyye.hipermission.PermissionItem
+import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator
 
 /**
  * User: newSalton@outlook.com
@@ -28,13 +30,15 @@ class XmlyPluginAty : BaseSupportActivity() {
     lateinit var mImmersionBar: ImmersionBar
     override fun initVariable(savedInstanceState: Bundle?) {
         mImmersionBar = ImmersionBar.with(this)
-                .statusBarDarkFont(true)
-                .transparentBar().transparentNavigationBar()
+            .statusBarDarkFont(true)
+            .transparentBar().transparentNavigationBar()
         mImmersionBar.init()
+
     }
 
     override fun initViewAndData() {
         checkPermission()
+        fragmentAnimator = DefaultHorizontalAnimator()
     }
 
 
@@ -47,35 +51,35 @@ class XmlyPluginAty : BaseSupportActivity() {
         permissionItems.add(PermissionItem(Manifest.permission.READ_EXTERNAL_STORAGE, "读取存储空间", R.drawable.permission_ic_storage))
         permissionItems.add(PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "写入存储空间", R.drawable.permission_ic_storage))
         HiPermission.create(this)
-                .title("亲爱的上帝")
-                .msg("为了能够正常使用，请开启这些权限吧！")
-                .permissions(permissionItems)
-                .style(R.style.PermissionDefaultBlueStyle)
-                .animStyle(R.style.PermissionAnimScale)
-                .checkMutiPermission(object : PermissionCallback {
-                    override fun onClose() {
-                        Log.i("aa", "permission_onClose")
-                        Toast.makeText(applicationContext, "用户关闭了权限", Toast.LENGTH_LONG).show()
-                    }
+            .title("亲爱的上帝")
+            .msg("为了能够正常使用，请开启这些权限吧！")
+            .permissions(permissionItems)
+            .style(R.style.PermissionDefaultBlueStyle)
+            .animStyle(R.style.PermissionAnimScale)
+            .checkMutiPermission(object : PermissionCallback {
+                override fun onClose() {
+                    Log.i("aa", "permission_onClose")
+                    Toast.makeText(applicationContext, "用户关闭了权限", Toast.LENGTH_LONG).show()
+                }
 
-                    override fun onFinish() {
-                        Toast.makeText(applicationContext, "初始化完毕", Toast.LENGTH_LONG).show()
-                        if (!isSetup) {
-                            setup()
-                        }
+                override fun onFinish() {
+                    Toast.makeText(applicationContext, "初始化完毕", Toast.LENGTH_LONG).show()
+                    if (!isSetup) {
+                        setup()
                     }
+                }
 
-                    override fun onDeny(s: String, i: Int) {
-                        Log.i("aa", "permission_onDeny")
-                    }
+                override fun onDeny(s: String, i: Int) {
+                    Log.i("aa", "permission_onDeny")
+                }
 
-                    override fun onGuarantee(s: String, i: Int) {
-                        Log.i("aa", "permission_onGuarantee")
-                        if (!isSetup) {
-                            setup()
-                        }
+                override fun onGuarantee(s: String, i: Int) {
+                    Log.i("aa", "permission_onGuarantee")
+                    if (!isSetup) {
+                        setup()
                     }
-                })
+                }
+            })
     }
 
     private fun setup() {
@@ -88,5 +92,9 @@ class XmlyPluginAty : BaseSupportActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mImmersionBar.destroy()
+        if (XmlyInitializer.xmPlayerManager.playList != null) {
+
+        }
+        XmlyInitializer.deInit()
     }
 }

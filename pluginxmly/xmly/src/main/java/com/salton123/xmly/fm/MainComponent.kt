@@ -42,5 +42,4 @@ class MainComponent : BaseSupportFragment() {
         start(args.targetFragment)
     }
 
-
 }

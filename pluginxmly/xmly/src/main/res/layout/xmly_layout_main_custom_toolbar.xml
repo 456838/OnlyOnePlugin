@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/radio_group_controls"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="?android:attr/actionBarSize"
+    android:layout_gravity="end"
+    android:gravity="center_vertical"
+    tools:showIn="@layout/xmly_cp_radio_pager"
+    android:divider="@drawable/xmly_common_divider_large_horizontal"
+    android:showDividers="beginning|middle|end"
+    >
+
+    <RadioButton
+        android:id="@+id/radio_button_play_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/xmly_selector_main_nav_play_list"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:button="@drawable/xmly_ic_main_nav_play_list_selected"
+        tools:checked="true"
+        />
+
+
+    <RadioButton
+        android:id="@+id/radio_button_music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/xmly_selector_main_nav_music"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        tools:button="@drawable/xmly_ic_main_nav_music"
+        />
+
+    <!--<RadioButton-->
+        <!--android:id="@+id/radio_button_local_files"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:button="@drawaxmly_selector_main_nav_local_filesiles"-->
+        <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+        <!--tools:button="@drawaxmly_ic_main_nav_local_filesiles"-->
+        <!--/>-->
+
+    <!--<RadioButton-->
+        <!--android:id="@+id/radio_button_settings"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:button="@drawaxmly_selector_main_nav_settingsings"-->
+        <!--android:background="?attr/selectableItemBackgroundBorderless"-->
+        <!--tools:button="@drawaxmly_ic_main_nav_settingsings"-->
+        <!--/>-->
+</RadioGroup>

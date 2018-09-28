@@ -11,7 +11,11 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion as Integer
         versionCode 1
         versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
+
     resourcePrefix "record_"
     buildTypes {
         release {
@@ -34,7 +38,7 @@ MobSDK {
     ShareREC {}
 }
 
-apply plugin: 'replugin-plugin-gradle'
+//apply plugin: 'replugin-plugin-gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -44,8 +48,11 @@ dependencies {
     //  LiveData with ReactiveStreams API
     implementation "android.arch.lifecycle:reactivestreams:1.1.1"
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
-    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
+//    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
 //    implementation 'com.android.support:appcompat-v7:24.2.0'
 //    implementation 'com.android.support:design:24.2.0'
-    implementation 'com.android.support:recyclerview-v7:24.2.0'
+//    implementation 'com.android.support:recyclerview-v7:24.2.0'
+    implementation 'com.qmuiteam:qmui:1.1.7'
+    implementation 'com.ethanhua:skeleton:1.1.1'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
 }

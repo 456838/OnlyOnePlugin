@@ -1,9 +1,7 @@
-package com.salton123.videoplugin
+package com.salton123.recordplugin
 
 import android.os.Bundle
 import com.salton123.base.BaseSupportActivity
-import com.salton123.util.LogUtils
-import me.yokeyword.fragmentation.Fragmentation
 
 /**
  * User: newSalton@outlook.com
@@ -11,9 +9,9 @@ import me.yokeyword.fragmentation.Fragmentation
  * ModifyTime: 下午8:09
  * Description:
  */
-class ImPluginAty : BaseSupportActivity() {
+class RecordPluginAty : BaseSupportActivity() {
     override fun getLayout(): Int {
-        return R.layout.view_video_component
+        return R.layout.record_plugin_aty
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {

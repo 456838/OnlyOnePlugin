@@ -64,7 +64,7 @@ object RecordCoreImpl : IRecorderCore {
     }
 
     override fun getCacheFolder(): String {
-        return recoder.cacheFolder
+        return recoder.cacheFolder?:""
     }
 
     override fun getTmpPath(): String {

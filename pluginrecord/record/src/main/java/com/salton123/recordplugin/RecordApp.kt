@@ -13,6 +13,5 @@ class RecordApp :ApplicationBase(){
     override fun onCreate() {
         super.onCreate()
         MobSDK.init(this)
-
     }
 }

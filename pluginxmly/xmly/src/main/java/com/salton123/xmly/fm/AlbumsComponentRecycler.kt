@@ -56,7 +56,6 @@ class AlbumsComponentRecycler : BaseSupportPresenterFragment<RequestContract.IRe
     override fun initVariable(savedInstanceState: Bundle?) {
         mPresenter = RequestPresenter()
         mAlbum = arguments.getParcelable("album")
-        setSwipeBackEnable(true)
     }
 
     override fun initViewAndData() {

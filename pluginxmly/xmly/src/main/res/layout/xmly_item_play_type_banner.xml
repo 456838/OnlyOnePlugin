@@ -10,7 +10,7 @@
     <cn.bingoogolapple.bgabanner.BGABanner
         android:id="@+id/banner"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
+        android:layout_height="160dp"
         app:banner_pageChangeDuration="3000"
         app:banner_pointAutoPlayAble="true"
         app:banner_pointContainerBackground="@android:color/transparent"

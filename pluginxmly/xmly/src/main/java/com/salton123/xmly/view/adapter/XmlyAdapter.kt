@@ -14,13 +14,14 @@ import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.salton123.GlideApp
 import com.salton123.xmly.R
 import com.salton123.xmly.XmlyParams
+import com.salton123.xmly.business.RequestContract
 import com.salton123.xmly.model.MultiTypeItem
 import com.ximalaya.ting.android.opensdk.model.album.DiscoveryRecommendAlbums
 import com.ximalaya.ting.android.opensdk.model.album.GussLikeAlbumList
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2
 import com.ximalaya.ting.android.opensdk.model.banner.BannerV2List
 
-class XmlyAdapter(context: Context)
+class XmlyAdapter(context: Context, var presenter: RequestContract.IRequestPresenter)
     : XRefreshRecyclerAdapter<MultiTypeItem>(context, object : MultipleType<MultiTypeItem> {
     override fun getLayoutId(item: MultiTypeItem, position: Int): Int {
         return when (item.viewType) {
@@ -33,7 +34,7 @@ class XmlyAdapter(context: Context)
 }) {
 
     private val TAG = "XmlyAdapter"
-
+    var recyclerViewPool: RecyclerView.RecycledViewPool = RecyclerView.RecycledViewPool()
     override fun bindData(holder: ViewHolder, data: MultiTypeItem, position: Int) {
         when (data.viewType) {
             XmlyParams.TYPE_BANNER -> {
@@ -67,13 +68,20 @@ class XmlyAdapter(context: Context)
             XmlyParams.TYPE_GUESS_LIKE -> {
                 if (data.item is GussLikeAlbumList) {
                     val gussLikeAlbumList = data.item as GussLikeAlbumList
+                    gussLikeAlbumList.albumList.shuffle()
                     holder.setText(R.id.tv_title, "猜你喜欢")
                     holder.getView<RecyclerView>(R.id.fl_recyclerView).let {
-                        it.layoutManager = LinearLayoutManager(context as Activity, LinearLayoutManager.HORIZONTAL, false)
-                        it.adapter = GuessLikeTypeHorizontalAdapter(context, gussLikeAlbumList.albumList, R.layout.xmly_item_play_type_guess_like_stub)
+                        val layoutManager = LinearLayoutManager(context as Activity, LinearLayoutManager.HORIZONTAL, false)
+                        layoutManager.initialPrefetchItemCount = 3
+                        it.layoutManager = layoutManager
+                        it.recycledViewPool = recyclerViewPool
+                        it.adapter = GuessLikeTypeHorizontalAdapter(context, gussLikeAlbumList.albumList.subList(0, 10), R.layout.xmly_item_play_type_guess_like_stub)
                     }
                     holder.getView<TextView>(R.id.tv_more).let {
-                        it.setOnClickListener { Toast.makeText(context, "换一批", Toast.LENGTH_LONG).show() }
+                        it.setOnClickListener {
+                            Toast.makeText(context, "换一批", Toast.LENGTH_LONG).show()
+                            presenter.getGuessLikeAlbum("50")
+                        }
                     }
                 }
             }
@@ -84,6 +92,7 @@ class XmlyAdapter(context: Context)
                     holder.getView<RecyclerView>(R.id.fl_recyclerView).let {
                         it.layoutManager = LinearLayoutManager(context as Activity, LinearLayoutManager.HORIZONTAL, false)
                         it.adapter = DiscoveryRecommendAlbumsAdapter(context, discoveryRecommendAlbum.albumList, R.layout.xmly_item_play_type_recommend_albums_stub)
+                        it.recycledViewPool = recyclerViewPool
                     }
                     holder.getView<TextView>(R.id.tv_more).let {
                         it.setOnClickListener { Toast.makeText(context, "更多", Toast.LENGTH_LONG).show() }
@@ -93,4 +102,5 @@ class XmlyAdapter(context: Context)
             }
         }
     }
+
 }

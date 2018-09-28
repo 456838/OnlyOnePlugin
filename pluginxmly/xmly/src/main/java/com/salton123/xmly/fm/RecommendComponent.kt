@@ -48,7 +48,7 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
         getData()
     }
 
-    private val mXmlyAdapter by lazy { XmlyAdapter(context) }
+    private val mXmlyAdapter by lazy { XmlyAdapter(context, mPresenter) }
     override fun getLayout(): Int {
         return R.layout.xmly_cp_recommend
     }
@@ -79,7 +79,7 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
     private fun getData() {
         mPresenter.getDiscoveryRecommendAlbums("10")
         mPresenter.getCategoryBannersV2("1")
-        mPresenter.getGuessLikeAlbum("10")
+        mPresenter.getGuessLikeAlbum("50")
     }
 
     val TAG = "RecommendComponent"
@@ -103,15 +103,26 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
         when (data) {
             is DiscoveryRecommendAlbumsList -> data.discoveryRecommendAlbumses.forEach {
                 mXmlyAdapter.add(MultiTypeItem(XmlyParams.TYPE_RECOMMEND_ALBUMS, it))
-                mXmlyAdapter.notifyItemInserted(mXmlyAdapter.getData().size)
+//                mXmlyAdapter.getData().sort()
+                mXmlyAdapter.notifyItemInserted(XmlyParams.TYPE_RECOMMEND_ALBUMS)
             }
             is BannerV2List -> {
                 mXmlyAdapter.add(MultiTypeItem(XmlyParams.TYPE_BANNER, data))
-                mXmlyAdapter.notifyItemInserted(mXmlyAdapter.getData().size)
+//                mXmlyAdapter.getData().sort()
+                mXmlyAdapter.notifyItemInserted(XmlyParams.TYPE_BANNER)
             }
             is GussLikeAlbumList -> {
-                mXmlyAdapter.add(MultiTypeItem(XmlyParams.TYPE_GUESS_LIKE, data))
-                mXmlyAdapter.notifyItemInserted(mXmlyAdapter.getData().size)
+                var target = mXmlyAdapter.getData().find { it.viewType == XmlyParams.TYPE_GUESS_LIKE }
+                if (target != null) {
+                    target.item = data
+                } else {
+                    target = MultiTypeItem(XmlyParams.TYPE_GUESS_LIKE, data)
+                    mXmlyAdapter.add(target)
+                }
+
+//                mXmlyAdapter.notifyItemChanged(XmlyParams.TYPE_GUESS_LIKE + 2)
+//                mXmlyAdapter.notifyItemInserted(mXmlyAdapter.getData().size)
+                mXmlyAdapter.notifyDataSetChanged()
             }
 
             is BatchTrackList -> {

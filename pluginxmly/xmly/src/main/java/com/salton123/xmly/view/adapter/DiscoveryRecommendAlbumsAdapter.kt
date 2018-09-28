@@ -11,7 +11,7 @@ import com.salton123.base.recyclerview.adapter.CommonAdapter
 import com.salton123.event.StartBrotherEvent
 import com.salton123.util.EventUtil
 import com.salton123.xmly.R
-import com.salton123.xmly.fm.AlbumsComponentRecycler
+import com.salton123.xmly.fm.AlbumsComponent
 import com.ximalaya.ting.android.opensdk.model.album.Album
 
 /**
@@ -41,7 +41,7 @@ class DiscoveryRecommendAlbumsAdapter(context: Context, layoutId: Int) : CommonA
         //横向 RecyclerView 封页图下面标题
         holder.setText(R.id.tv_title, data.albumTitle)
         holder.setText(R.id.tv_tag, data.albumIntro)
-        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(FragmentDelegate.newInstance(AlbumsComponentRecycler::class.java, Bundle().also { it.putParcelable("album", data) }))) }
+        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(FragmentDelegate.newInstance(AlbumsComponent::class.java, Bundle().also { it.putParcelable("album", data) }))) }
     }
 }
 

@@ -17,7 +17,7 @@ import java.nio.ByteBuffer
  * ModifyTime: 下午8:36
  * Description:
  */
-object RecordCoreImpl : IRecorderCore {
+class RecordCoreImpl : IRecorderCore {
     override fun setForceLandscape() {
         recoder.setForceLandscape()
     }
@@ -64,7 +64,7 @@ object RecordCoreImpl : IRecorderCore {
     }
 
     override fun getCacheFolder(): String {
-        return recoder.cacheFolder?:""
+        return recoder.cacheFolder ?: ""
     }
 
     override fun getTmpPath(): String {

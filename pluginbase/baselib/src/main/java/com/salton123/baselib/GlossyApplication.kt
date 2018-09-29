@@ -1,7 +1,6 @@
 package com.salton123.baselib
 
 import com.salton123.base.ApplicationBase
-import com.salton123.util.MLog
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
@@ -23,7 +22,4 @@ abstract class GlossyApplication : ApplicationBase() {
         )
     }
 
-    fun initLog() {
-        MLog.init()
-    }
 }

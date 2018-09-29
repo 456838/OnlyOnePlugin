@@ -1,7 +1,6 @@
 package com.salton123.recordplugin.core
 
 import android.graphics.Bitmap
-import cn.sharerec.core.biz.CustomPlatform
 import cn.sharerec.recorder.FrameWatcher
 import cn.sharerec.recorder.MediaOutput
 import cn.sharerec.recorder.OnRecorderStateListener

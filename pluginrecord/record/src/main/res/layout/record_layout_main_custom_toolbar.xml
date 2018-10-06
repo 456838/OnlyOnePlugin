@@ -6,20 +6,20 @@
     android:layout_width="wrap_content"
     android:layout_height="?android:attr/actionBarSize"
     android:layout_gravity="end"
-    android:divider="@drawable/xmly_common_divider_large_horizontal"
+    android:divider="@drawable/record_common_divider_large_horizontal"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:showDividers="beginning|middle|end"
-    tools:ignore="NewApi"
-    tools:showIn="@layout/xmly_cp_radio_pager">
+    tools:showIn="@layout/record_cp_radio_pager"
+    >
 
     <RadioButton
         android:id="@+id/radio_button_play_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:button="@drawable/xmly_selector_main_nav_play_list"
-        tools:button="@drawable/xmly_ic_main_nav_play_list_selected"
+        android:button="@drawable/record_selector_main_nav_play_list"
+        tools:button="@drawable/record_ic_main_nav_play_list_selected"
         tools:checked="true"
         />
 
@@ -29,8 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:button="@drawable/xmly_selector_main_nav_music"
-        tools:button="@drawable/xmly_ic_main_nav_music"
+        android:button="@drawable/record_selector_main_nav_music"
+        tools:button="@drawable/record_ic_main_nav_music"
         />
 
     <!--<RadioButton-->

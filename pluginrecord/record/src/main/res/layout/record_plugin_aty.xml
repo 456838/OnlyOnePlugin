@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/videoFragment"
-        android:name="com.salton123.recordplugin.RecordMainComp"
+        android:name="com.salton123.recordplugin.ui.fm.RecordRadioPagerComponent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />

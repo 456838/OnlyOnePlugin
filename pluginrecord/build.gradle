@@ -41,7 +41,7 @@ allprojects {
             force "com.android.support:appcompat-v7:${dependVersion.androidSupportSdkVersion}"
             force "com.android.support:design:${dependVersion.androidSupportSdkVersion}"
             force "com.android.support:recyclerview-v7:${dependVersion.androidSupportSdkVersion}"
-            force "com.android.support:cardview-v7:${dependVersion.androidSupportSdkVersion}"
+            force "com.android.support:cardview-v7:26.0.1"
             force "com.android.support:design:${dependVersion.androidSupportSdkVersion}"
             force "com.android.support:support-compat:${dependVersion.androidSupportSdkVersion}"
             force "com.android.support:support-core-ui:${dependVersion.androidSupportSdkVersion}"

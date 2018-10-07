@@ -17,14 +17,24 @@ import com.salton123.util.PreferencesUtils
  */
 object RecordPropertyCompat {
     private const val KEY_RECORD_PROPERTY = "key_record_property"
-    var mProperty = loadProperty()
+    private var mProperty = RecordProperty()
     private var recorder = CoreManager.getCore(IRecorderCore::class.java)
-    fun setMaxFrameSize(frameSize: Int) {
-        mProperty.maxFrameSize = frameSize
-        recorder.setMaxFrameSize(compatMaxFrameSize(frameSize))
+    fun setMaxFrameSize(frameSize: Recorder.LevelMaxFrameSize) {
+        mProperty.maxFrameSize = frameSize.pixels
+        recorder.setMaxFrameSize(frameSize)
         saveProperty()
     }
 
+    init {
+        load()
+    }
+
+    fun load() {
+        mProperty = loadProperty()
+        recorder.setMaxFrameSize(compatMaxFrameSize(mProperty.maxFrameSize))
+        recorder.setVideoQuality(compatVideoQuality(mProperty.videoQuality))
+        XLog.e("load")
+    }
 //    fun isLandscape(isLandscape: Boolean) {
 //        mProperty.isLandscape = isLandscape
 //        recorder.setForceLandscape()
@@ -43,18 +53,19 @@ object RecordPropertyCompat {
         saveProperty()
     }
 
-    fun videoQuality(videoQuality: Int) {
-        mProperty.videoQuality = videoQuality
-        recorder.setVideoQuality(compatVideoQuality(videoQuality))
+    fun videoQuality(videoQuality: Recorder.LevelVideoQuality) {
+        mProperty.videoQuality = videoQuality.ordinal
+        recorder.setVideoQuality(videoQuality)
         saveProperty()
     }
 
     private fun loadProperty(): RecordProperty {
         return try {
             var property = PreferencesUtils.getString(
-                ApplicationBase.getInstance(),
-                KEY_RECORD_PROPERTY
+                    ApplicationBase.getInstance(),
+                    KEY_RECORD_PROPERTY,""
             )
+            XLog.e("property=$property")
             Gson().fromJson<RecordProperty>(property, RecordProperty::class.java)
         } catch (ex: Exception) {
             XLog.e(ex)
@@ -65,9 +76,9 @@ object RecordPropertyCompat {
     private fun saveProperty() {
         try {
             PreferencesUtils.putString(
-                ApplicationBase.getInstance(),
-                KEY_RECORD_PROPERTY,
-                Gson().toJson(mProperty)
+                    ApplicationBase.getInstance(),
+                    KEY_RECORD_PROPERTY,
+                    Gson().toJson(mProperty)
             )
         } catch (ex: Exception) {
             XLog.e(ex)

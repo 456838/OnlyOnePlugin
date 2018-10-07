@@ -49,13 +49,13 @@ class RecordPropertyComp : BaseSupportFragment() {
                 dialog.dismiss()
                 when (position) {
                     0 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480)
                     }
                     1 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720)
                     }
                     2 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080)
                     }
                 }
                 Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()
@@ -73,13 +73,13 @@ class RecordPropertyComp : BaseSupportFragment() {
                 dialog.dismiss()
                 when (position) {
                     0 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480)
                     }
                     1 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720)
                     }
                     2 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080)
                     }
                 }
                 Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()

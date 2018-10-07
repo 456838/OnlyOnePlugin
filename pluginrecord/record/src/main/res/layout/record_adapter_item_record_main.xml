@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:scaleType="fitStart"
-        android:src="@mipmap/video_bg_fingerprint"
         />
 
     <LinearLayout

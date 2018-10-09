@@ -36,6 +36,6 @@ class XmlyTabPagerComponent : BaseSupportFragment() {
         mTabLayout.setupWithViewPager(mViewPager)
         TabLayoutHelper.setUpIndicatorWidth(mTabLayout)
 //        StatusBarUtil.darkMode(activity, Color.BLACK, 0.1f)
-        StatusBarUtil.setPaddingSmart(activity, mTabLayout)
+        StatusBarUtil.setPaddingSmart(_mActivity, mTabLayout)
     }
 }

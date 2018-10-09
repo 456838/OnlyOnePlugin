@@ -48,21 +48,21 @@ class AlbumsComponentRecycler : BaseSupportPresenterFragment<RequestContract.IRe
         loadMore()
     }
 
-    private val mAdapter by lazy { AlbumsDetailRecyclerAdapter(context) }
+    private val mAdapter by lazy { AlbumsDetailRecyclerAdapter(_mActivity) }
     override fun getLayout(): Int = R.layout.xmly_cp_albums_new
-    private val mHeader by lazy { AlbumHeader(context) }
+    private val mHeader by lazy { AlbumHeader(_mActivity) }
     private var mAlbum: Album = Album()
     var page: Int = 1
     override fun initVariable(savedInstanceState: Bundle?) {
         mPresenter = RequestPresenter()
-        mAlbum = arguments.getParcelable("album")
+        mAlbum = arguments!!.getParcelable("album")
     }
 
     override fun initViewAndData() {
         titleBar.title("${mAlbum.albumTitle}")
             .leftIcon(R.drawable.xmly_ic_arrow_back_black_24dp)
             .leftIconListener(View.OnClickListener { pop() })
-        StatusBarUtil.setPaddingSmart(activity, titleBar)
+        StatusBarUtil.setPaddingSmart(_mActivity, titleBar)
         mRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         mRecyclerView.adapter = mAdapter
         mRecyclerView.setHasFixedSize(true)

@@ -7,7 +7,6 @@ buildscript {
         jcenter()
         mavenLocal()
         maven { url '../../repo' }
-        maven { url "https://dl.bintray.com/456838/saltonFramework" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -34,7 +33,6 @@ allprojects {
         mavenLocal()
         maven { url 'https://jitpack.io' }
         maven { url '../../repo' }
-        maven { url "https://dl.bintray.com/456838/saltonFramework" }
     }
     configurations.all {
         resolutionStrategy {

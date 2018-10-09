@@ -27,7 +27,6 @@ class XmlyApp : GlossyApplication() {
         MLog.info("aa", "" + System.currentTimeMillis())
         initXmly()
         cusFont()
-        initLog()
         Fragmentation.FragmentationBuilder().debug(true).stackViewMode(Fragmentation.BUBBLE).install()
     }
 

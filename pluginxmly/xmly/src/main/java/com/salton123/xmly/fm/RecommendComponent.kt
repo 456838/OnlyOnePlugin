@@ -48,7 +48,7 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
         getData()
     }
 
-    private val mXmlyAdapter by lazy { XmlyAdapter(context, mPresenter) }
+    private val mXmlyAdapter by lazy { XmlyAdapter(_mActivity, mPresenter) }
     override fun getLayout(): Int {
         return R.layout.xmly_cp_recommend
     }
@@ -58,7 +58,7 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
     }
 
     override fun initViewAndData() {
-        if (!NetUtil.isNetworkAvailable(context)) {
+        if (!NetUtil.isNetworkAvailable(_mActivity)) {
             multipleStatusView.showNoNetwork()
         }
         mRecyclerView.layoutManager = LinearLayoutManager(activity)

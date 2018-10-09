@@ -37,7 +37,8 @@ class GuessLikeTypeHorizontalAdapter(context: Context, layoutId: Int) : CommonAd
                         .into(holder.getView(R.id.iv_cover_feed))
             }
         })
-        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(FragmentDelegate.newInstance(AlbumsComponent::class.java, Bundle().also { it.putParcelable("album", data) }))) }
+        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(FragmentDelegate.newInstance(AlbumsComponent::class.java,
+            Bundle().also { it.putParcelable("album", data) },null,null))) }
         //横向 RecyclerView 封页图下面标题
         holder.setText(R.id.tv_title, data.albumTitle)
         holder.setText(R.id.tv_tag, data.albumIntro)

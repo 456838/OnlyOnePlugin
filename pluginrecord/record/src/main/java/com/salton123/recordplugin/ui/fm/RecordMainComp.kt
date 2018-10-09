@@ -44,12 +44,13 @@ class RecordMainComp : BaseSupportFragment(), XRefreshView.XRefreshViewListener 
     }
 
     override fun onRefresh() {
-
+        getData()
+        refreshLayout.stopRefresh()
     }
 
     override fun onRefresh(isPullDown: Boolean) {
-        refreshLayout.setLoadComplete(false)
-        getData()
+//        refreshLayout.setLoadComplete(false)
+//        getData()
     }
 
     private fun getData() {
@@ -57,6 +58,7 @@ class RecordMainComp : BaseSupportFragment(), XRefreshView.XRefreshViewListener 
         refreshLayout.stopRefresh()
         refreshLayout.setLoadComplete(true)
     }
+
 
     private var recorder = CoreManager.getCore(IRecorderCore::class.java)
     private lateinit var recordMainLiveData: RecordMainLiveData
@@ -78,16 +80,17 @@ class RecordMainComp : BaseSupportFragment(), XRefreshView.XRefreshViewListener 
                 val position = parent.getChildAdapterPosition(view)
                 val offset = ScreenUtils.dp2px(2f)
                 outRect.set(if (position % 2 == 0) 0 else offset, offset,
-                        if (position % 2 == 0) offset else 0, offset)
+                    if (position % 2 == 0) offset else 0, offset)
             }
         })
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        Log.i("RecordMainComp", "cacheFolder:" + recorder.getCacheFolder())
+
 //        RecordPropertyCompat.load()
         recorder.setVideoQuality(Recorder.LevelVideoQuality.LEVEL_HIGH)
         recorder.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720)
-//        recorder.disableMic()
-        recorder.setRecordAudio(false)
+        recorder.disableMic()
+        recorder.prepareSoundCopying()
+        Log.i("RecordMainComp", "cacheFolder:" + recorder.getCacheFolder() + ",isRecordAudio=" + recorder.getIsRecordAudio())
         mAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(obj: Any?, position: Int) {
                 if (obj != null && obj is MP4) {

@@ -25,8 +25,8 @@ class RecordRadioPagerComponent : BaseSupportFragment(), CompoundButton.OnChecke
     private val mAboutComponent by lazy { FragmentDelegate.newInstance(RecordPropertyComp::class.java) }
     private var radioButtons: MutableList<RadioButton> = ArrayList()
     private val mTabList: MutableList<Pair<SupportFragment, String>> = mutableListOf(
-        Pair(mRecommendComponent, "推荐"),
-        Pair(mAboutComponent, "关于")
+        Pair(mRecommendComponent, "录制"),
+        Pair(mAboutComponent, "配置")
     )
 
     override fun getLayout(): Int = R.layout.record_cp_radio_pager

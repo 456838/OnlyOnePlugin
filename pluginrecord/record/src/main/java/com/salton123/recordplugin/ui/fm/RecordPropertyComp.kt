@@ -42,23 +42,28 @@ class RecordPropertyComp : BaseSupportFragment() {
 
     private fun showVideoQualityBottomDialog() {
         QMUIBottomSheet.BottomListSheetBuilder(activity)
-            .addItem("800*480")
-            .addItem("1280*720")
-            .addItem("1920*1080")
+            .setTitle("视频画质")
+            .addItem("普通")
+            .addItem("一般")
+            .addItem("高清")
+            .addItem("超清")
             .setOnSheetItemClickListener { dialog, _, position, tag ->
                 dialog.dismiss()
                 when (position) {
                     0 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480.pixels)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_LOW.ordinal)
                     }
                     1 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720.pixels)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_MEDIUN.ordinal)
                     }
                     2 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080.pixels)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_HIGH.ordinal)
+                    }
+                    3 -> {
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_VERY_HIGH.ordinal)
                     }
                 }
-                Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "已选择${tag}清晰度", Toast.LENGTH_SHORT).show()
             }
             .build()
             .show()
@@ -66,6 +71,7 @@ class RecordPropertyComp : BaseSupportFragment() {
 
     private fun showMaxFrameSizeBottomDialog() {
         QMUIBottomSheet.BottomListSheetBuilder(activity)
+            .setTitle("分辨率")
             .addItem("800*480")
             .addItem("1280*720")
             .addItem("1920*1080")

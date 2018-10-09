@@ -51,16 +51,16 @@ class RecordPropertyComp : BaseSupportFragment() {
                 dialog.dismiss()
                 when (position) {
                     0 -> {
-                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_LOW.ordinal)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_LOW)
                     }
                     1 -> {
-                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_MEDIUN.ordinal)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_MEDIUN)
                     }
                     2 -> {
-                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_HIGH.ordinal)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_HIGH)
                     }
                     3 -> {
-                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_VERY_HIGH.ordinal)
+                        RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_VERY_HIGH)
                     }
                 }
                 Toast.makeText(activity, "已选择${tag}清晰度", Toast.LENGTH_SHORT).show()
@@ -79,13 +79,13 @@ class RecordPropertyComp : BaseSupportFragment() {
                 dialog.dismiss()
                 when (position) {
                     0 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_800_480)
                     }
                     1 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720)
                     }
                     2 -> {
-                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080.pixels)
+                        RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080)
                     }
                 }
                 Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()

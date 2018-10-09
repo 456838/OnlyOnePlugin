@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     >
 
-    <FrameLayout
-        android:id="@+id/flContent"
+
+    <com.andview.refreshview.XRefreshView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+            android:layout_height="match_parent"
+            />
+    </com.andview.refreshview.XRefreshView>
 
     <com.qmuiteam.qmui.widget.QMUIEmptyView
         android:id="@+id/emptyView"

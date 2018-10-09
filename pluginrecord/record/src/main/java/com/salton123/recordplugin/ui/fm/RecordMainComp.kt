@@ -10,11 +10,16 @@ import android.util.Log
 import android.view.View
 import cn.sharerec.recorder.Recorder
 import cn.sharerec.recorder.media.MP4
+import com.andview.refreshview.XRefreshView
+import com.hazz.kotlinmvp.view.recyclerview.adapter.OnItemClickListener
 import com.salton123.base.BaseSupportFragment
+import com.salton123.base.FragmentDelegate
 import com.salton123.core.CoreManager
+import com.salton123.log.XLog
 import com.salton123.recordplugin.R
 import com.salton123.recordplugin.core.IRecorderCore
 import com.salton123.recordplugin.livedata.RecordMainLiveData
+import com.salton123.recordplugin.model.bean.VideoBean
 import com.salton123.recordplugin.view.adapter.RecordMainRecAdapter
 import com.salton123.util.ScreenUtils
 import kotlinx.android.synthetic.main.record_main_comp.*
@@ -25,7 +30,34 @@ import kotlinx.android.synthetic.main.record_main_comp.*
  * ModifyTime: 下午8:25
  * Description:
  */
-class RecordMainComp : BaseSupportFragment() {
+class RecordMainComp : BaseSupportFragment(), XRefreshView.XRefreshViewListener {
+    override fun onHeaderMove(headerMovePercent: Double, offsetY: Int) {
+
+    }
+
+    override fun onRelease(direction: Float) {
+        getData()
+    }
+
+    override fun onLoadMore(isSilence: Boolean) {
+        getData()
+    }
+
+    override fun onRefresh() {
+
+    }
+
+    override fun onRefresh(isPullDown: Boolean) {
+        refreshLayout.setLoadComplete(false)
+        getData()
+    }
+
+    private fun getData() {
+        recordMainLiveData.onActive()
+        refreshLayout.stopRefresh()
+        refreshLayout.setLoadComplete(true)
+    }
+
     private var recorder = CoreManager.getCore(IRecorderCore::class.java)
     private lateinit var recordMainLiveData: RecordMainLiveData
     private val mAdapter: RecordMainRecAdapter by lazy { RecordMainRecAdapter(_mActivity) }
@@ -43,15 +75,31 @@ class RecordMainComp : BaseSupportFragment() {
         recyclerView.adapter = mAdapter
         recyclerView.addItemDecoration(object : RecyclerView.ItemDecoration() {
             override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State?) {
-                val position = parent.getChildPosition(view)
+                val position = parent.getChildAdapterPosition(view)
                 val offset = ScreenUtils.dp2px(2f)
                 outRect.set(if (position % 2 == 0) 0 else offset, offset,
-                    if (position % 2 == 0) offset else 0, offset)
+                        if (position % 2 == 0) offset else 0, offset)
             }
-
         })
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         Log.i("RecordMainComp", "cacheFolder:" + recorder.getCacheFolder())
+//        RecordPropertyCompat.load()
+        recorder.setVideoQuality(Recorder.LevelVideoQuality.LEVEL_HIGH)
+        recorder.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1280_720)
+//        recorder.disableMic()
+        recorder.setRecordAudio(false)
+        mAdapter.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(obj: Any?, position: Int) {
+                if (obj != null && obj is MP4) {
+                    FragmentDelegate.newInstance(MediaPopupComp::class.java).apply {
+                        var bundle = Bundle()
+                        bundle.putParcelable(FragmentDelegate.ARG_ITEM, VideoBean(0, obj.localPath))
+                        arguments = bundle
+                        show(_mActivity.supportFragmentManager, "MediaPopupComp")
+                    }
+                }
+            }
+        })
     }
 
     override fun onClick(v: View?) {
@@ -78,11 +126,10 @@ class RecordMainComp : BaseSupportFragment() {
     }
 
     private fun fillInData(list: Array<MP4>) {
-        flContent.visibility = View.VISIBLE
+        XLog.i("fillInData")
+        refreshLayout.visibility = View.VISIBLE
         emptyView.visibility = View.GONE
         mAdapter.clear()
         mAdapter.addAll(list.asList() as MutableList<MP4>)
     }
-
-
 }

@@ -3,10 +3,10 @@
 buildscript {
     apply from: "../public/config.gradle"
     repositories {
+        maven { url '../../repo' }
         google()
         jcenter()
         mavenLocal()
-        maven { url '../../repo' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -16,7 +16,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
         // 注册MobSDK
-        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
+//        classpath "com.mob.sdk:MobSDK:2018.0319.1724"
     }
     configurations.all {
         resolutionStrategy {
@@ -30,9 +30,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url '../../repo' }
         mavenLocal()
         maven { url 'https://jitpack.io' }
-        maven { url '../../repo' }
     }
     configurations.all {
         resolutionStrategy {

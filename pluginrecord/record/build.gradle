@@ -2,7 +2,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.mob.sdk'
+//apply plugin: 'com.mob.sdk'
 android {
     compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
     buildToolsVersion "${rootProject.ext.android.buildToolsVersion}"
@@ -14,9 +14,12 @@ android {
         ndk {
             abiFilters "armeabi-v7a"
         }
+        resConfigs "zh"
+
     }
 
-    resourcePrefix "record_"
+//    resourcePrefix "record_"
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,30 +32,46 @@ android {
             outputFileName = "recordplugin.apk"
         }
     }
+    //按分辨率进行分包
+    splits {
+        density {
+            enable true
+            exclude "ldpi", "tvdpi", "xxxhdpi"
+            compatibleScreens 'small', 'normal', 'large', 'xlarge'
+        }
+    }
+
+    sourceSets {
+        main {
+            assets.srcDirs = ['src/main/assets']
+            res.srcDirs = ['src/main/res', 'src/main/res_rec']
+            java.srcDirs = ['src/main/java', 'src/main/java_pro']
+            println "res dirs=" + res.getSrcDirs() + ", assets dirs=" + assets.getSrcDirs() + ", java.srcDirs" + java.getSrcDirs()
+        }
+    }
 }
 
-
-MobSDK {
-    appKey "281040827de88"
-    appSecret "bde0faec953c384483065d451396d271"
-    ShareREC {}
-}
+//MobSDK {
+//    appKey "281040827de88"
+//    appSecret "bde0faec953c384483065d451396d271"
+//    ShareREC {}
+//}
 
 //apply plugin: 'replugin-plugin-gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.salton123:baselib:0.0.0.1"
+    api("com.salton123:baselib:0.0.0.2")
     //  LiveData & ViewModel
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+//    implementation "android.arch.lifecycle:extensions:1.1.1"
     //  LiveData with ReactiveStreams API
-    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
+//    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
     implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
 //    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
-    implementation 'com.android.support:cardview-v7:26.0.1'
+//    implementation 'com.android.support:cardview-v7:26.0.1'
 //    implementation 'com.android.support:design:24.2.0'
 //    implementation 'com.android.support:recyclerview-v7:24.2.0'
     implementation 'com.qmuiteam:qmui:1.1.7'
-    implementation 'com.ethanhua:skeleton:1.1.1'
-    implementation 'io.supercharge:shimmerlayout:2.1.0'
+//    implementation 'com.ethanhua:skeleton:1.1.1'
+//    implementation 'io.supercharge:shimmerlayout:2.1.0'
 }

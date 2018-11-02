@@ -17,10 +17,10 @@ import com.salton123.util.PreferencesUtils
  */
 object RecordPropertyCompat {
     private const val KEY_RECORD_PROPERTY = "key_record_property"
-    private var mProperty = RecordProperty()
+    var mProperty = RecordProperty()
     private var recorder = CoreManager.getCore(IRecorderCore::class.java)
     fun setMaxFrameSize(frameSize: Recorder.LevelMaxFrameSize) {
-        mProperty.maxFrameSize = frameSize.pixels
+        mProperty.maxFrameSize = frameSize.ordinal
         recorder.setMaxFrameSize(frameSize)
         saveProperty()
     }
@@ -62,8 +62,8 @@ object RecordPropertyCompat {
     private fun loadProperty(): RecordProperty {
         return try {
             var property = PreferencesUtils.getString(
-                    ApplicationBase.getInstance(),
-                    KEY_RECORD_PROPERTY,""
+                ApplicationBase.getInstance(),
+                KEY_RECORD_PROPERTY, ""
             )
             XLog.e("property=$property")
             Gson().fromJson<RecordProperty>(property, RecordProperty::class.java)
@@ -76,9 +76,9 @@ object RecordPropertyCompat {
     private fun saveProperty() {
         try {
             PreferencesUtils.putString(
-                    ApplicationBase.getInstance(),
-                    KEY_RECORD_PROPERTY,
-                    Gson().toJson(mProperty)
+                ApplicationBase.getInstance(),
+                KEY_RECORD_PROPERTY,
+                Gson().toJson(mProperty)
             )
         } catch (ex: Exception) {
             XLog.e(ex)

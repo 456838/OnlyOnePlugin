@@ -21,7 +21,7 @@ import me.yokeyword.fragmentation.SupportFragment
  */
 class RecordRadioPagerComponent : BaseSupportFragment(), CompoundButton.OnCheckedChangeListener {
     internal val DEFAULT_PAGE_INDEX = 0
-    private val mRecommendComponent by lazy { FragmentDelegate.newInstance(RecordMainComp::class.java) }
+    private val mRecommendComponent by lazy { FragmentDelegate.newInstance(RecordExhibitionComp::class.java) }
     private val mAboutComponent by lazy { FragmentDelegate.newInstance(RecordPropertyComp::class.java) }
     private var radioButtons: MutableList<RadioButton> = ArrayList()
     private val mTabList: MutableList<Pair<SupportFragment, String>> = mutableListOf(

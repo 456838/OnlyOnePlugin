@@ -7,6 +7,7 @@ import com.qihoo360.replugin.RePlugin
 import com.salton123.base.BaseSupportFragment
 import com.salton123.base.FragmentDelegate
 import com.salton123.onlyone.R
+import com.salton123.onlyone.R.id.bottoNavigationBar
 import com.salton123.onlyone.ui.fm.FirstFragment
 import com.salton123.onlyone.ui.fm.FourFragment
 import com.salton123.onlyone.ui.fm.SecondFragment

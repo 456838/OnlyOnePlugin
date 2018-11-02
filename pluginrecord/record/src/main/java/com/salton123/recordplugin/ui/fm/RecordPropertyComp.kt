@@ -1,8 +1,12 @@
 package com.salton123.recordplugin.ui.fm
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import cn.sharerec.recorder.Recorder
+import com.qmuiteam.qmui.util.QMUIResHelper
 import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet
 import com.qmuiteam.qmui.widget.grouplist.QMUICommonListItemView
 import com.qmuiteam.qmui.widget.grouplist.QMUIGroupListView
@@ -23,15 +27,25 @@ class RecordPropertyComp : BaseSupportFragment() {
     override fun initVariable(savedInstanceState: Bundle?) {
     }
 
+    private fun createAccessView(text: String): View {
+        var accessView = View.inflate(_mActivity, R.layout.view_assessory, null)
+        accessView.findViewById<TextView>(R.id.tvHint).text = text
+        accessView.findViewById<ImageView>(R.id.ivAct).setImageDrawable(QMUIResHelper.getAttrDrawable(context, R.attr.qmui_common_list_item_chevron));
+        return accessView
+    }
+
     override fun initViewAndData() {
+
         val itemMaxFrameSize = groupListView.createItemView("分辨率")
-        itemMaxFrameSize.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON
+        itemMaxFrameSize.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM
+        itemMaxFrameSize.addAccessoryCustomView(createAccessView(getPixel(RecordPropertyCompat.mProperty.maxFrameSize)))
         itemMaxFrameSize.orientation = QMUICommonListItemView.VERTICAL
         itemMaxFrameSize.detailText = "视频的宽、高像素数，越高视频越清晰"
 
         val itemVideoQuality = groupListView.createItemView("视频画质")
-        itemVideoQuality.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CHEVRON
+        itemVideoQuality.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM
         itemVideoQuality.orientation = QMUICommonListItemView.VERTICAL
+        itemVideoQuality.addAccessoryCustomView(createAccessView(getQuality(RecordPropertyCompat.mProperty.videoQuality)))
         itemVideoQuality.detailText = "越高画质越好，生成的文件也会越大"
         QMUIGroupListView.newSection(context)
             .setTitle("录制参数")
@@ -40,6 +54,25 @@ class RecordPropertyComp : BaseSupportFragment() {
             .addTo(groupListView)
     }
 
+
+    private fun getQuality(videoQuality: Int): String {
+        return when (videoQuality) {
+            Recorder.LevelVideoQuality.LEVEL_VERY_HIGH.ordinal -> {
+                "超清"
+            }
+            Recorder.LevelVideoQuality.LEVEL_MEDIUN.ordinal -> {
+                "一般"
+            }
+            Recorder.LevelVideoQuality.LEVEL_HIGH.ordinal -> {
+                "高清"
+            }
+            else -> {
+                "普通"
+            }
+        }
+    }
+    private fun getCheckIndex
+
     private fun showVideoQualityBottomDialog() {
         QMUIBottomSheet.BottomListSheetBuilder(activity)
             .setTitle("视频画质")
@@ -47,6 +80,7 @@ class RecordPropertyComp : BaseSupportFragment() {
             .addItem("一般")
             .addItem("高清")
             .addItem("超清")
+            .setCheckedIndex()
             .setOnSheetItemClickListener { dialog, _, position, tag ->
                 dialog.dismiss()
                 when (position) {
@@ -68,6 +102,24 @@ class RecordPropertyComp : BaseSupportFragment() {
             .build()
             .show()
     }
+
+    private fun getPixel(pixel: Int): String {
+        return when (pixel) {
+            Recorder.LevelMaxFrameSize.LEVEL_800_480.pixels -> {
+                "800*480"
+            }
+            Recorder.LevelMaxFrameSize.LEVEL_1280_720.pixels -> {
+                "1280*720"
+            }
+            Recorder.LevelMaxFrameSize.LEVEL_1920_1080.pixels -> {
+                "1920*1080"
+            }
+            else -> {
+                "800*480"
+            }
+        }
+    }
+
 
     private fun showMaxFrameSizeBottomDialog() {
         QMUIBottomSheet.BottomListSheetBuilder(activity)

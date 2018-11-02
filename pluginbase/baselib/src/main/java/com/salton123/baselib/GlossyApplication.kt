@@ -1,7 +1,6 @@
 package com.salton123.baselib
 
 import com.salton123.base.ApplicationBase
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 /**
  * User: newSalton@outlook.com
@@ -12,14 +11,14 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 abstract class GlossyApplication : ApplicationBase() {
 
 
-    fun cusFont() {
-        // Custom fonts
-        CalligraphyConfig.initDefault(
-                CalligraphyConfig.Builder()
-                        .setDefaultFontPath("fonts/Roboto-Thin.ttf")
-                        .setFontAttrId(R.attr.fontPath)
-                        .build()
-        )
-    }
+//    fun cusFont() {
+//        // Custom fonts
+//        CalligraphyConfig.initDefault(
+//                CalligraphyConfig.Builder()
+//                        .setDefaultFontPath("fonts/Roboto-Thin.ttf")
+//                        .setFontAttrId(R.attr.fontPath)
+//                        .build()
+//        )
+//    }
 
 }

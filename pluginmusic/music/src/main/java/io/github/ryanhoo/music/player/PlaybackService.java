@@ -1,6 +1,5 @@
 package io.github.ryanhoo.music.player;
 
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
@@ -8,13 +7,11 @@ import android.graphics.Bitmap;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import io.github.ryanhoo.music.R;
 import io.github.ryanhoo.music.data.model.PlayList;
 import io.github.ryanhoo.music.data.model.Song;
-import io.github.ryanhoo.music.ui.main.MainActivity;
 import io.github.ryanhoo.music.utils.AlbumUtils;
 
 /**
@@ -271,7 +268,6 @@ public class PlaybackService extends Service implements IPlayback, IPlayback.Cal
             remoteView.setImageViewResource(R.id.image_view_album, R.mipmap.ic_launcher);
         } else {
             remoteView.setImageViewBitmap(R.id.image_view_album, album);
-
         }
     }
 

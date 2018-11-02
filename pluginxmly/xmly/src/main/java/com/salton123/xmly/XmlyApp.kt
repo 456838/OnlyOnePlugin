@@ -24,14 +24,12 @@ class XmlyApp : GlossyApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        MLog.info("aa", "" + System.currentTimeMillis())
         initXmly()
         cusFont()
         Fragmentation.FragmentationBuilder().debug(true).stackViewMode(Fragmentation.BUBBLE).install()
     }
 
     fun initXmly() {
-        MLog.info("aa", "" + System.currentTimeMillis())
 //        CommonRequest.getInstanse().setPackid("com.app.test.android")
         CommonRequest.getInstanse()
             .init(this, XmlyParams.APP_SECRET)

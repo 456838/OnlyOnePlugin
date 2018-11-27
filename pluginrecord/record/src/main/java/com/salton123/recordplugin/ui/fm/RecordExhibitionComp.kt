@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.view.ViewGroup
 import cn.sharerec.recorder.OnRecorderStateListener
 import cn.sharerec.recorder.Recorder
 import cn.sharerec.recorder.media.MP4
@@ -28,7 +29,6 @@ import com.salton123.util.ScreenUtils
 import kotlinx.android.synthetic.main.record_comp_exhibition.*
 
 /**
- * User: newSalton@outlook.com
  * Date: 2018/10/16 5:45 PM
  * ModifyTime: 5:45 PM
  * Description:
@@ -90,7 +90,6 @@ class RecordExhibitionComp : BaseSupportPresenterFragment<RecordContract.IRecord
         recyclerView.layoutManager = LinearLayoutManager(_mActivity)
         refreshLayout.setXRefreshViewListener(this)
         getData()
-        setListener(ivStartRecordNew)
     }
 
     override fun initListener() {
@@ -127,6 +126,13 @@ class RecordExhibitionComp : BaseSupportPresenterFragment<RecordContract.IRecord
                 startActivity(small)
             }
         })
+        f<ViewGroup>(R.id.emptyViewHolder).setOnClickListener {
+            if (recorder.isAvailable()) {
+                recorder.start()
+            } else {
+                longToast("系统版本低于5.0无法录制")
+            }
+        }
     }
 
     private var deleteDialog: AlertDialog? = null

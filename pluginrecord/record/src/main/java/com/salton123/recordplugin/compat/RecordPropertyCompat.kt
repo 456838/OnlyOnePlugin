@@ -20,7 +20,7 @@ object RecordPropertyCompat {
     var mProperty = RecordProperty()
     private var recorder = CoreManager.getCore(IRecorderCore::class.java)
     fun setMaxFrameSize(frameSize: Recorder.LevelMaxFrameSize) {
-        mProperty.maxFrameSize = frameSize.ordinal
+        mProperty.maxFrameSize = frameSize.pixels
         recorder.setMaxFrameSize(frameSize)
         saveProperty()
     }
@@ -33,7 +33,6 @@ object RecordPropertyCompat {
         mProperty = loadProperty()
         recorder.setMaxFrameSize(compatMaxFrameSize(mProperty.maxFrameSize))
         recorder.setVideoQuality(compatVideoQuality(mProperty.videoQuality))
-        XLog.e("load")
     }
 //    fun isLandscape(isLandscape: Boolean) {
 //        mProperty.isLandscape = isLandscape

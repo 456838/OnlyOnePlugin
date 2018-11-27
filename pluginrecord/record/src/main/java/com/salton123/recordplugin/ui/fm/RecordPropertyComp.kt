@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import cn.sharerec.recorder.Recorder
 import com.qmuiteam.qmui.util.QMUIResHelper
 import com.qmuiteam.qmui.widget.dialog.QMUIBottomSheet
@@ -22,6 +21,10 @@ import kotlinx.android.synthetic.main.record_comp_property.*
  * Description:
  */
 class RecordPropertyComp : BaseSupportFragment() {
+    //    private lateinit var itemMaxFrameSize: QMUICommonListItemView
+//    private lateinit var itemVideoQuality: QMUICommonListItemView
+    private lateinit var maxFrameAccessoryView: View
+    private lateinit var qualityAccessoryView: View
     override fun getLayout(): Int = R.layout.record_comp_property
 
     override fun initVariable(savedInstanceState: Bundle?) {
@@ -30,22 +33,26 @@ class RecordPropertyComp : BaseSupportFragment() {
     private fun createAccessView(text: String): View {
         var accessView = View.inflate(_mActivity, R.layout.view_assessory, null)
         accessView.findViewById<TextView>(R.id.tvHint).text = text
-        accessView.findViewById<ImageView>(R.id.ivAct).setImageDrawable(QMUIResHelper.getAttrDrawable(context, R.attr.qmui_common_list_item_chevron));
+        accessView.findViewById<ImageView>(R.id.ivAct)
+            .setImageDrawable(QMUIResHelper
+                .getAttrDrawable(context, R.attr.qmui_common_list_item_chevron)
+            )
         return accessView
     }
 
     override fun initViewAndData() {
-
+        maxFrameAccessoryView = createAccessView(getPixel(RecordPropertyCompat.mProperty.maxFrameSize))
         val itemMaxFrameSize = groupListView.createItemView("分辨率")
         itemMaxFrameSize.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM
-        itemMaxFrameSize.addAccessoryCustomView(createAccessView(getPixel(RecordPropertyCompat.mProperty.maxFrameSize)))
+        itemMaxFrameSize.addAccessoryCustomView(maxFrameAccessoryView)
         itemMaxFrameSize.orientation = QMUICommonListItemView.VERTICAL
         itemMaxFrameSize.detailText = "视频的宽、高像素数，越高视频越清晰"
 
+        qualityAccessoryView = createAccessView(getQuality(RecordPropertyCompat.mProperty.videoQuality))
         val itemVideoQuality = groupListView.createItemView("视频画质")
         itemVideoQuality.accessoryType = QMUICommonListItemView.ACCESSORY_TYPE_CUSTOM
         itemVideoQuality.orientation = QMUICommonListItemView.VERTICAL
-        itemVideoQuality.addAccessoryCustomView(createAccessView(getQuality(RecordPropertyCompat.mProperty.videoQuality)))
+        itemVideoQuality.addAccessoryCustomView(qualityAccessoryView)
         itemVideoQuality.detailText = "越高画质越好，生成的文件也会越大"
         QMUIGroupListView.newSection(context)
             .setTitle("录制参数")
@@ -71,16 +78,25 @@ class RecordPropertyComp : BaseSupportFragment() {
             }
         }
     }
-    private fun getCheckIndex
+
+    private fun getVideoQualityCheckIndex(): Int {
+        return when (getQuality(RecordPropertyCompat.mProperty.videoQuality)) {
+            "普通" -> return 0
+            "一般" -> return 1
+            "高清" -> return 2
+            "超清" -> return 3
+            else -> 0
+        }
+    }
 
     private fun showVideoQualityBottomDialog() {
-        QMUIBottomSheet.BottomListSheetBuilder(activity)
+        QMUIBottomSheet.BottomListSheetBuilder(activity, true)
             .setTitle("视频画质")
             .addItem("普通")
             .addItem("一般")
             .addItem("高清")
             .addItem("超清")
-            .setCheckedIndex()
+            .setCheckedIndex(getVideoQualityCheckIndex())
             .setOnSheetItemClickListener { dialog, _, position, tag ->
                 dialog.dismiss()
                 when (position) {
@@ -97,10 +113,20 @@ class RecordPropertyComp : BaseSupportFragment() {
                         RecordPropertyCompat.videoQuality(Recorder.LevelVideoQuality.LEVEL_VERY_HIGH)
                     }
                 }
-                Toast.makeText(activity, "已选择${tag}清晰度", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, "已选择${tag}清晰度", Toast.LENGTH_SHORT).show()
+                qualityAccessoryView.findViewById<TextView>(R.id.tvHint).text = tag
             }
             .build()
             .show()
+    }
+
+    private fun getMaxFrameCheckIndex(): Int {
+        return when (getPixel(RecordPropertyCompat.mProperty.maxFrameSize)) {
+            "800*480" -> return 0
+            "1280*720" -> return 1
+            "1920*1080" -> return 2
+            else -> 0
+        }
     }
 
     private fun getPixel(pixel: Int): String {
@@ -122,11 +148,12 @@ class RecordPropertyComp : BaseSupportFragment() {
 
 
     private fun showMaxFrameSizeBottomDialog() {
-        QMUIBottomSheet.BottomListSheetBuilder(activity)
+        QMUIBottomSheet.BottomListSheetBuilder(activity, true)
             .setTitle("分辨率")
             .addItem("800*480")
             .addItem("1280*720")
             .addItem("1920*1080")
+            .setCheckedIndex(getMaxFrameCheckIndex())
             .setOnSheetItemClickListener { dialog, _, position, tag ->
                 dialog.dismiss()
                 when (position) {
@@ -140,7 +167,8 @@ class RecordPropertyComp : BaseSupportFragment() {
                         RecordPropertyCompat.setMaxFrameSize(Recorder.LevelMaxFrameSize.LEVEL_1920_1080)
                     }
                 }
-                Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()
+                maxFrameAccessoryView.findViewById<TextView>(R.id.tvHint).text = tag
+//                Toast.makeText(activity, "已选择${tag}分辨率", Toast.LENGTH_SHORT).show()
             }
             .build()
             .show()

@@ -1,0 +1,66 @@
+//apply plugin: 'com.android.library'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+android {
+    compileSdkVersion "${rootProject.ext.android.compileSdkVersion}" as Integer
+    buildToolsVersion "${rootProject.ext.android.buildToolsVersion}"
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion as Integer
+        targetSdkVersion rootProject.ext.android.targetSdkVersion as Integer
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//     自定义输出配置
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "titeduplugin.apk"
+        }
+    }
+}
+
+//apply plugin: 'replugin-plugin-gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jsoup:jsoup:1.11.2"
+    implementation "com.squareup.retrofit2:converter-scalars:2.4.0"
+//    //  LiveData & ViewModel
+//    implementation "android.arch.lifecycle:extensions:+"
+//    //  LiveData with ReactiveStreams API
+//    implementation "android.arch.lifecycle:reactivestreams:+"
+    implementation 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+//    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.2.4'
+    implementation "com.salton123:baselib:0.0.0.1"
+    implementation "com.android.support:design:${rootProject.ext.dependVersion.androidSupportSdkVersion}"
+    implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
+    // core
+    implementation "com.liulishuo.okdownload:okdownload:1.0.4"
+// provide sqlite to store breakpoints
+    implementation "com.liulishuo.okdownload:sqlite:1.0.4"
+// provide okhttp to connect to backend
+// and then please import okhttp dependencies by yourself
+    implementation "com.liulishuo.okdownload:okhttp:1.0.4"
+    implementation 'me.weyye.hipermission:library:1.0.7'
+
+
+
+}
+
+//task to copy library to libs
+task copyXmly(type: Copy) {
+    from('build/outputs/apk/')
+    into('../app/src/main/assets/plugins/')
+    ///Rename the aar
+    rename('xmly-debug.apk', 'xmly-debug.jar')
+}

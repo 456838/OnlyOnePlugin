@@ -1,19 +1,22 @@
 package com.salton123.compressionplugin
 
 import android.Manifest
-import android.content.pm.ActivityInfo
+import android.content.pm.PackageInfo
 import android.os.Bundle
 import android.widget.Toast
 import com.salton123.base.BaseSupportActivity
-import com.salton123.videoplugin.R
-import com.zhihu.matisse.Matisse
-import com.zhihu.matisse.MimeType
-import com.zhihu.matisse.engine.impl.GlideEngine
-import com.zhihu.matisse.filter.Filter
+import com.salton123.util.SizeUtils
 import me.weyye.hipermission.HiPermission
 import me.weyye.hipermission.PermissionCallback
 import me.weyye.hipermission.PermissionItem
-import java.util.ArrayList
+import java.io.File
+import java.util.*
+import android.content.pm.ApplicationInfo
+import android.media.Image
+import com.gyf.barlibrary.ImmersionBar
+import com.salton123.base.FragmentDelegate
+import com.salton123.compressionplugin.model.AppInfoCore
+
 
 /**
  * User: newSalton@outlook.com
@@ -22,26 +25,15 @@ import java.util.ArrayList
  * Description:
  */
 class VideoPluginAty : BaseSupportActivity() {
+    internal var mImmersionBar: ImmersionBar? = null
     override fun getLayout(): Int {
-        return R.layout.view_video_component
+        return R.layout.salton_fm_container
     }
 
     override fun initVariable(savedInstanceState: Bundle?) {
-        // 栈视图功能，大大降低Fragment的开发难度，建议在Application里初始化
-//        Fragmentation.builder()
-//                // 设置 栈视图 模式为 悬浮球模式   SHAKE: 摇一摇唤出   NONE：隐藏
-//                .stackViewMode(Fragmentation.BUBBLE)
-//                // ture时，遇到异常："Can not perform this action after onSaveInstanceState!"时，会抛出
-//                // false时，不会抛出，会捕获，可以在handleException()里监听到
-//                .debug(BuildConfig.DEBUG)
-//                // 线上环境时，可能会遇到上述异常，此时debug=false，不会抛出该异常（避免crash），会捕获
-//                // 建议在回调处上传至我们的Crash检测服务器
-//                .handleException {
-//                    LogUtils.e(it)
-//                    //                         以Bugtags为例子: 手动把捕获到的 Exception 传到 Bugtags 后台。
-//                    //                         Bugtags.sendException(e);
-//                }
-//                .install()
+        mImmersionBar = ImmersionBar.with(this)
+            .statusBarDarkFont(true)
+        mImmersionBar!!.init()
     }
 
     override fun initViewAndData() {
@@ -83,16 +75,12 @@ class VideoPluginAty : BaseSupportActivity() {
     }
 
     private fun loadData() {
-        Matisse.from(this@VideoPluginAty)
-            .choose(MimeType.ofAll())
-            .countable(true)
-            .maxSelectable(9)
-            .addFilter(GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
-            .gridExpectedSize(resources.getDimensionPixelSize(R.dimen.grid_expected_size))
-            .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-            .thumbnailScale(0.85f)
-            .imageEngine(GlideEngine())
-            .forResult(REQUEST_CODE_CHOOSE)
+        loadRootFragment(R.id.fl_container, FragmentDelegate.newInstance(ImageCompressionComp::class.java))
     }
 
+
+    override fun onDestroy() {
+        mImmersionBar?.destroy()
+        super.onDestroy()
+    }
 }

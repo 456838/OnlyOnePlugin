@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.andview.refreshview.XRefreshView
 import com.andview.refreshview.XRefreshViewFooter
+import com.salton123.log.XLog
 import com.salton123.mvp.ui.BaseSupportPresenterFragment
 import com.salton123.util.EventUtil
-import com.salton123.util.MLog
 import com.salton123.util.NetUtil
 import com.salton123.xmly.R
 import com.salton123.xmly.XmlyParams
@@ -85,7 +85,7 @@ class RecommendComponent : BaseSupportPresenterFragment<RequestContract.IRequest
     val TAG = "RecommendComponent"
 
     override fun onError(code: Int, msg: String) {
-        MLog.error(TAG, "code=$code,msg=$msg")
+        XLog.e(TAG, "code=$code,msg=$msg")
         refreshLayout.stopRefresh()
         showEmpty()
     }

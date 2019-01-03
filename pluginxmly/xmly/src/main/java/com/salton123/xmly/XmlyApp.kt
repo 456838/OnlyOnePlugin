@@ -3,7 +3,6 @@ package com.salton123.xmly
 import android.app.PendingIntent
 import android.content.Intent
 import com.salton123.baselib.GlossyApplication
-import com.salton123.util.MLog
 import com.salton123.xmly.business.XmlyInitializer
 import com.ximalaya.ting.android.opensdk.datatrasfer.CommonRequest
 import com.ximalaya.ting.android.opensdk.player.appnotification.XmNotificationCreater
@@ -25,7 +24,6 @@ class XmlyApp : GlossyApplication() {
     override fun onCreate() {
         super.onCreate()
         initXmly()
-        cusFont()
         Fragmentation.FragmentationBuilder().debug(true).stackViewMode(Fragmentation.BUBBLE).install()
     }
 
@@ -69,11 +67,4 @@ class XmlyApp : GlossyApplication() {
         XmlyInitializer.initForApp(this)
         Paper.init(this)
     }
-
-    override fun onTerminate() {
-        super.onTerminate()
-        MLog.error("aa", "[onTerminate]")
-
-    }
-
 }

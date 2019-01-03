@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">VideoPlugin</string>
+    <string name="app_name">安全卸载器</string>
+    <string name="system_app_type_should_keep">[Should keep]</string>
 </resources>

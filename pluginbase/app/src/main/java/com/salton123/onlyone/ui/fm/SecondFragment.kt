@@ -23,12 +23,12 @@ class SecondFragment : SupportFragment() {
 
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         contentView = inflater?.inflate(R.layout.salton_fm_container, null, false)!!
         return contentView
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (RePlugin.preload("titeduplugin")) {
             var videoLayout = RePlugin.fetchViewByLayoutName<FrameLayout>("titeduplugin", "cp_tit_edu_main", null)

@@ -5,10 +5,10 @@ import android.widget.ImageView
 import com.hazz.kotlinmvp.view.recyclerview.MultipleType
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
 import com.salton123.GlideApp
-import com.salton123.util.SizeUtils
 import com.salton123.xmly.R
 import com.salton123.xmly.XmlyParams
 import com.salton123.xmly.model.MultiTypeItem
+import com.salton123.xmly.util.SizeUtils
 import com.salton123.xmly.util.TrackUtil
 import com.ximalaya.ting.android.opensdk.model.album.Album
 import com.ximalaya.ting.android.opensdk.model.track.Track

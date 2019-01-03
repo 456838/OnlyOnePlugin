@@ -6,7 +6,7 @@ import com.qihoo360.replugin.RePlugin
 import com.qihoo360.replugin.RePluginCallbacks
 import com.qihoo360.replugin.RePluginConfig
 import com.salton123.baselib.GlossyApplication
-import com.salton123.util.LogUtils
+import com.salton123.log.XLog
 import me.yokeyword.fragmentation.Fragmentation
 
 
@@ -77,7 +77,7 @@ class OnlyOneApplication : GlossyApplication() {
                 // 线上环境时，可能会遇到上述异常，此时debug=false，不会抛出该异常（避免crash），会捕获
                 // 建议在回调处上传至我们的Crash检测服务器
                 .handleException {
-                    LogUtils.e(it)
+                   XLog.e(this,it.localizedMessage)
                     //                         以Bugtags为例子: 手动把捕获到的 Exception 传到 Bugtags 后台。
                     //                         Bugtags.sendException(e);
                 }

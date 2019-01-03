@@ -1,7 +1,8 @@
 package com.salton123.xmly.callback;
 
-import com.salton123.util.LogUtils;
-import com.salton123.util.MLog;
+import com.andview.refreshview.utils.LogUtils;
+import com.esotericsoftware.minlog.Log;
+import com.salton123.log.XLog;
 import com.ximalaya.ting.android.opensdk.model.PlayableModel;
 import com.ximalaya.ting.android.opensdk.player.service.IXmPlayerStatusListener;
 import com.ximalaya.ting.android.opensdk.player.service.XmPlayerException;
@@ -21,57 +22,57 @@ public abstract class AbsXmPlayerStatusListener implements IXmPlayerStatusListen
 
     @Override
     public void onPlayStart() {
-        LogUtils.d("[onPlayStart]");
+        XLog.d(TAG,"[onPlayStart]");
     }
 
     @Override
     public void onPlayPause() {
-        LogUtils.d("[onPlayPause]");
+        XLog.d(TAG,"[onPlayPause]");
     }
 
     @Override
     public void onPlayStop() {
-        LogUtils.d("[onPlayStop]");
+        XLog.d(TAG,"[onPlayStop]");
     }
 
     @Override
     public void onSoundPlayComplete() {
-        LogUtils.d(TAG, "[onSoundPlayComplete]");
+        XLog.d(TAG, "[onSoundPlayComplete]");
     }
 
     @Override
     public void onSoundPrepared() {
-        LogUtils.d(TAG, "[onSoundPrepared]");
+        XLog.d(TAG, "[onSoundPrepared]");
     }
 
     @Override
     public void onSoundSwitch(PlayableModel playableModel, PlayableModel playableModel1) {
-        LogUtils.d(TAG, "[onSoundSwitch]");
+        XLog.d(TAG, "[onSoundSwitch]");
     }
 
     @Override
     public void onBufferingStart() {
-        LogUtils.d(TAG, "[onBufferingStart]");
+        XLog.d(TAG, "[onBufferingStart]");
     }
 
     @Override
     public void onBufferingStop() {
-        LogUtils.d(TAG, "[onBufferingStop]");
+        XLog.d(TAG, "[onBufferingStop]");
     }
 
     @Override
     public void onBufferProgress(int i) {
-        LogUtils.d(TAG, "[onBufferProgress] i=" + i);
+        XLog.d(TAG, "[onBufferProgress] i=" + i);
     }
 
     @Override
     public void onPlayProgress(int i, int i1) {
-        LogUtils.d(TAG, "[onPlayProgress] i=" + i + ",i1= " + i1);
+        XLog.d(TAG, "[onPlayProgress] i=" + i + ",i1= " + i1);
     }
 
     @Override
     public boolean onError(XmPlayerException e) {
-        MLog.error(TAG, "[onError] ex=" + e.getMessage());
+        XLog.e(TAG, "[onError] ex=" + e.getMessage());
         return false;
     }
 }

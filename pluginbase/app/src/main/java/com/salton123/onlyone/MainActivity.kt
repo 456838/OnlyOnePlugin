@@ -3,9 +3,8 @@ package com.salton123.onlyone
 import android.os.Bundle
 import com.salton123.base.FragmentDelegate
 import com.salton123.onlyone.ui.MainFragment
-import me.yokeyword.fragmentation.SupportActivity
 
-class MainActivity : SupportActivity() {
+class MainActivity : me.yokeyword.fragmentation.SupportActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.salton_fm_container)

@@ -41,8 +41,9 @@ class DiscoveryRecommendAlbumsAdapter(context: Context, layoutId: Int) : CommonA
         //横向 RecyclerView 封页图下面标题
         holder.setText(R.id.tv_title, data.albumTitle)
         holder.setText(R.id.tv_tag, data.albumIntro)
-        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(FragmentDelegate.newInstance(AlbumsComponent::class.java,
-            Bundle().also { it.putParcelable("album", data) },null,null))) }
+        holder.itemView.setOnClickListener { EventUtil.sendEvent(StartBrotherEvent(
+                FragmentDelegate.newInstance(AlbumsComponent::class.java,
+            Bundle().also { it.putParcelable("album", data) }))) }
     }
 }
 

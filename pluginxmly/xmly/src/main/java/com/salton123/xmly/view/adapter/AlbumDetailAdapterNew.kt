@@ -2,8 +2,8 @@ package com.salton123.xmly.view.adapter
 
 import android.content.Context
 import com.hazz.kotlinmvp.view.recyclerview.ViewHolder
-import com.salton123.util.SizeUtils
 import com.salton123.xmly.R
+import com.salton123.xmly.util.SizeUtils
 import com.salton123.xmly.util.TrackUtil
 import com.ximalaya.ting.android.opensdk.model.track.Track
 
